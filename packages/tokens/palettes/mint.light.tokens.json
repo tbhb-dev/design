@@ -1,0 +1,186 @@
+{
+  "palette": {
+    "mint": {
+      "1": {
+        "$value": {
+          "colorSpace": "oklch",
+          "components": [0.9928, 0.0053, 183.68],
+          "hex": "#f9fefd"
+        }
+      },
+      "2": {
+        "$value": {
+          "colorSpace": "oklch",
+          "components": [0.982, 0.0101, 178.66],
+          "hex": "#f2fbf9"
+        }
+      },
+      "3": {
+        "$value": {
+          "colorSpace": "oklch",
+          "components": [0.9595, 0.0299, 179.57],
+          "hex": "#ddf9f2"
+        }
+      },
+      "4": {
+        "$value": {
+          "colorSpace": "oklch",
+          "components": [0.933, 0.047, 178.98],
+          "hex": "#c8f4e9"
+        }
+      },
+      "5": {
+        "$value": {
+          "colorSpace": "oklch",
+          "components": [0.8994, 0.0608, 178.72],
+          "hex": "#b3ecde"
+        }
+      },
+      "6": {
+        "$value": {
+          "colorSpace": "oklch",
+          "components": [0.8559, 0.0719, 178.68],
+          "hex": "#9ce0d0"
+        }
+      },
+      "7": {
+        "$value": {
+          "colorSpace": "oklch",
+          "components": [0.7979, 0.0848, 178.22],
+          "hex": "#7ecfbd"
+        }
+      },
+      "8": {
+        "$value": {
+          "colorSpace": "oklch",
+          "components": [0.722, 0.1066, 177.69],
+          "hex": "#4cbba5"
+        }
+      },
+      "9": {
+        "$value": {
+          "colorSpace": "oklch",
+          "components": [0.8696, 0.0998, 177.97],
+          "hex": "#86ead4"
+        }
+      },
+      "10": {
+        "$value": {
+          "colorSpace": "oklch",
+          "components": [0.8412, 0.0997, 177.77],
+          "hex": "#7de0cb"
+        }
+      },
+      "11": {
+        "$value": {
+          "colorSpace": "oklch",
+          "components": [0.5118, 0.095, 176.02],
+          "hex": "#027864"
+        }
+      },
+      "12": {
+        "$value": {
+          "colorSpace": "oklch",
+          "components": [0.3497, 0.0505, 181.44],
+          "hex": "#16433c"
+        }
+      },
+      "$type": "color",
+      "$description": "Radix Colors mint, light, from @radix-ui/colors 3.0.0",
+      "a1": {
+        "$value": {
+          "colorSpace": "oklch",
+          "components": [0.7409, 0.1993, 170.05],
+          "alpha": 0.02,
+          "hex": "#00d5aa"
+        }
+      },
+      "a2": {
+        "$value": {
+          "colorSpace": "oklch",
+          "components": [0.6291, 0.1736, 167.71],
+          "alpha": 0.044,
+          "hex": "#00b18a"
+        }
+      },
+      "a3": {
+        "$value": {
+          "colorSpace": "oklch",
+          "components": [0.7093, 0.1963, 167.92],
+          "alpha": 0.114,
+          "hex": "#00d29e"
+        }
+      },
+      "a4": {
+        "$value": {
+          "colorSpace": "oklch",
+          "components": [0.6958, 0.191, 168.61],
+          "alpha": 0.181,
+          "hex": "#00cc99"
+        }
+      },
+      "a5": {
+        "$value": {
+          "colorSpace": "oklch",
+          "components": [0.6523, 0.176, 170.01],
+          "alpha": 0.255,
+          "hex": "#00c091"
+        }
+      },
+      "a6": {
+        "$value": {
+          "colorSpace": "oklch",
+          "components": [0.6079, 0.1638, 170.1],
+          "alpha": 0.334,
+          "hex": "#00b086"
+        }
+      },
+      "a7": {
+        "$value": {
+          "colorSpace": "oklch",
+          "components": [0.5589, 0.1504, 170.19],
+          "alpha": 0.432,
+          "hex": "#00a17d"
+        }
+      },
+      "a8": {
+        "$value": {
+          "colorSpace": "oklch",
+          "components": [0.5436, 0.1476, 169.58],
+          "alpha": 0.581,
+          "hex": "#009e7f"
+        }
+      },
+      "a9": {
+        "$value": {
+          "colorSpace": "oklch",
+          "components": [0.713, 0.1943, 169.2],
+          "alpha": 0.381,
+          "hex": "#00d3a5"
+        }
+      },
+      "a10": {
+        "$value": {
+          "colorSpace": "oklch",
+          "components": [0.6602, 0.1803, 168.98],
+          "alpha": 0.416,
+          "hex": "#00c399"
+        }
+      },
+      "a11": {
+        "$value": {
+          "colorSpace": "oklch",
+          "components": [0.5118, 0.095, 176.02],
+          "hex": "#007763"
+        }
+      },
+      "a12": {
+        "$value": {
+          "colorSpace": "oklch",
+          "components": [0.3497, 0.0505, 181.44],
+          "hex": "#00312a"
+        }
+      }
+    }
+  }
+}

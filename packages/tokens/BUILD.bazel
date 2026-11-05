@@ -19,10 +19,35 @@ exports_files(["package.json"])
 SCALES = [
     "amber",
     "blue",
+    "bronze",
+    "brown",
+    "crimson",
+    "cyan",
+    "gold",
     "grass",
+    "gray",
+    "green",
     "indigo",
+    "iris",
+    "jade",
+    "lime",
+    "mauve",
+    "mint",
+    "olive",
+    "orange",
+    "pink",
+    "plum",
+    "purple",
     "red",
+    "ruby",
+    "sage",
+    "sand",
+    "sky",
     "slate",
+    "teal",
+    "tomato",
+    "violet",
+    "yellow",
 ]
 
 radix_palettes(
@@ -97,12 +122,25 @@ tokens_css(
     visibility = ["//visibility:public"],
 )
 
+# Every palette scale, solid and alpha, whether or not a theme uses it, for
+# pages that show the palettes themselves, such as the Storybooks' Colors.
+tokens_css(
+    name = "all_css",
+    srcs = TOKENS,
+    out = "all.css",
+    palette = "",
+    resolver = "tokens.resolver.json",
+    visibility = ["//visibility:public"],
+)
+
 # The package as the workspace links it: a dependency on @tbhb-dev/tokens
-# gets the built stylesheet as `@tbhb-dev/tokens/tokens.css`.
+# gets the built stylesheets as `@tbhb-dev/tokens/tokens.css` and
+# `@tbhb-dev/tokens/all.css`.
 npm_package(
     name = "pkg",
     srcs = [
         "package.json",
+        ":all_css",
         ":css",
     ],
     visibility = ["//visibility:public"],
