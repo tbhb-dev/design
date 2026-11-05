@@ -44,8 +44,14 @@ jobs:
           disk-cache: ${{ github.workflow }}-ubuntu-26.04
           cache-save: ${{ github.event_name != 'pull_request' }}
 
+      # --config=ci downloads no outputs, so a cache hit would leave
+      # .bazel-bin/pages/pages empty; fetch the top-level outputs instead, and
+      # refuse to upload an artifact without the site's index page.
       - name: Build the site
-        run: bazelisk build --config=ci //pages
+        run: bazelisk build --config=ci --remote_download_outputs=toplevel //pages
+
+      - name: Check the artifact
+        run: test -f .bazel-bin/pages/pages/index.html
 
       - name: Upload the Pages artifact
         uses: actions/upload-pages-artifact@fc324d3547104276b827a68afc52ff2a11cc49c9  # v5.0.0
