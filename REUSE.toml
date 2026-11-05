@@ -1,0 +1,10 @@
+version = 1
+
+# tbhb-dev/design is proprietary: every file is LicenseRef-Proprietary unless
+# its own header says otherwise. A few tool configs copied from tbhb-dev
+# repositories keep their Apache-2.0 headers, so LICENSES/ holds that text
+# too.
+[[annotations]]
+path = "**"
+SPDX-FileCopyrightText = "Tony Burns"
+SPDX-License-Identifier = "LicenseRef-Proprietary"

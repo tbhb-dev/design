@@ -1,0 +1,9 @@
+---
+# pnpm's settings. pnpm 11 and later no longer read the "pnpm" field of
+# package.json, and rules_js reads this file too. allowBuilds is empty because
+# no lifecycle script may run.
+
+packages:
+  - packages/*
+
+allowBuilds: {}
