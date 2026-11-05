@@ -25,5 +25,7 @@ ignore_directories([
     ".vale/write-good",
     ".vale/proselint",
     ".vale/ai-tells*",
+    ".vale/config/scripts",
+    ".vale/config/templates",
     ".obsidian",
 ])
