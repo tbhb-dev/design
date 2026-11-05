@@ -1,6 +1,13 @@
 ---
 // SPDX-License-Identifier: Apache-2.0
 // Copyright Tony Burns
+
+const storybooks = [
+  { name: "Web Components", path: "web-components" },
+  { name: "React", path: "react" },
+  { name: "HTML", path: "html" },
+  { name: "Astro", path: "astro" },
+];
 ---
 
 <html lang="en">
@@ -11,5 +18,15 @@
   </head>
   <body>
     <h1>tbhb.dev design system</h1>
+    <h2>Storybooks</h2>
+    <ul>
+      {
+        storybooks.map(({ name, path }) => (
+          <li>
+            <a href={`/storybook/${path}/`}>{name}</a>
+          </li>
+        ))
+      }
+    </ul>
   </body>
 </html>

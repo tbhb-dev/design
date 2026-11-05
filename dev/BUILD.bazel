@@ -12,6 +12,10 @@ repo_files()
 # they are.
 SERVERS = {
     "/": "//site:dev",
+    "/storybook/astro/": "//storybook/astro:dev",
+    "/storybook/html/": "//storybook/html:dev",
+    "/storybook/react/": "//storybook/react:dev",
+    "/storybook/web-components/": "//storybook/web-components:dev",
 }
 
 # `bazel run //dev -- --port 4300` serves every dev server behind one port.
@@ -27,18 +31,26 @@ js_binary(
     },
 )
 
-# The proxy over a copy of the site: it serves / once every server answers,
-# refuses a bad argument, and exits 0 on SIGTERM.
+# The proxy over a copy of every server's sources: it refuses a bad
+# argument, serves / and each Storybook once every server answers, and exits
+# 0 on SIGTERM.
+SOURCES = ["//site:sources"] + [
+    "//storybook/{}:sources".format(framework)
+    for framework in [
+        "astro",
+        "html",
+        "react",
+        "web-components",
+    ]
+]
+
 js_test(
     name = "dev_test",
     args = ["$(rootpath :dev)"],
     # The site's sources are read and copied as they are, from another
     # package, so they stay in the source tree.
     copy_data_to_bin = False,
-    data = [
-        ":dev",
-        "//site:sources",
-    ],
+    data = [":dev"] + SOURCES,
     entry_point = "dev_test.mjs",
-    env = {"SITE_FILES": "$(rootpaths //site:sources)"},
+    env = {"WORKSPACE_FILES": " ".join(["$(rootpaths {})".format(s) for s in SOURCES])},
 )

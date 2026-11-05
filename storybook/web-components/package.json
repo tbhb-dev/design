@@ -1,0 +1,11 @@
+{
+  "name": "@tbhb-dev/storybook-web-components",
+  "version": "0.0.0",
+  "private": true,
+  "type": "module",
+  "description": "The Web Components (Lit) Storybook, served at design.tbhb.dev/storybook/web-components/.",
+  "license": "Apache-2.0",
+  "dependencies": {
+    "lit": "3.3.3"
+  }
+}

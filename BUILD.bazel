@@ -113,6 +113,7 @@ repo_layout_test(
         "packages",
         "pages",
         "site",
+        "storybook",
         "tools",
     ],
 )

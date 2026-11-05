@@ -44,6 +44,8 @@ mise.local.toml
 /.worktrees/
 # Astro's generated types and dev-server state.
 .astro/
+# storybook_dev's generated config, which holds this machine's paths.
+.tbhb-storybook/
 tmp/
 # Drafted pull request bodies, read when the pull request is opened.
 .github/PULL_REQUEST_DRAFT.md

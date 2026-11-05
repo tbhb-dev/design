@@ -19,17 +19,25 @@ write_file(
 )
 
 # The whole of design.tbhb.dev as GitHub Pages serves it: the Astro site at
-# the root, beside .nojekyll. `bazel build //pages` writes it, and the pages
-# workflow uploads it.
+# the root, each Storybook under /storybook/<framework>/, and .nojekyll.
+# `bazel build //pages` writes it, and the pages workflow uploads it.
 copy_to_directory(
     name = "pages",
     srcs = [
         ":nojekyll",
         "//site:dist",
+        "//storybook/astro:dist",
+        "//storybook/html:dist",
+        "//storybook/react:dist",
+        "//storybook/web-components:dist",
     ],
     replace_prefixes = {
         "pages/.nojekyll": ".nojekyll",
         "site/dist": "",
+        "storybook/astro/dist": "storybook/astro",
+        "storybook/html/dist": "storybook/html",
+        "storybook/react/dist": "storybook/react",
+        "storybook/web-components/dist": "storybook/web-components",
     },
 )
 

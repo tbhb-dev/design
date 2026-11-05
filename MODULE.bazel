@@ -11,7 +11,7 @@ module(name = "tbhb_dev_design")
 bazel_dep(name = "tbhb_rules", version = "0.0.0", dev_dependency = True)
 git_override(
     module_name = "tbhb_rules",
-    commit = "addcdb509868433f2d7b5d75df5d8374c72354f2",
+    commit = "b8178a163b0e758c115309b609a79dd8cdf4b713",
     remote = "https://github.com/tbhb-dev/rules.git",
 )
 
@@ -23,7 +23,7 @@ git_override(
 bazel_dep(name = "tbhb_rules_typescript", version = "0.0.0", dev_dependency = True)
 git_override(
     module_name = "tbhb_rules_typescript",
-    commit = "addcdb509868433f2d7b5d75df5d8374c72354f2",
+    commit = "b8178a163b0e758c115309b609a79dd8cdf4b713",
     remote = "https://github.com/tbhb-dev/rules.git",
     strip_prefix = "typescript",
 )
@@ -35,9 +35,32 @@ git_override(
 bazel_dep(name = "tbhb_rules_astro", version = "0.0.0", dev_dependency = True)
 git_override(
     module_name = "tbhb_rules_astro",
-    commit = "addcdb509868433f2d7b5d75df5d8374c72354f2",
+    commit = "b8178a163b0e758c115309b609a79dd8cdf4b713",
     remote = "https://github.com/tbhb-dev/rules.git",
     strip_prefix = "astro",
+)
+
+# Playwright's pinned Chromium, which the Storybook tests run in. Same pin
+# as tbhb_rules; locally,
+# `common --override_module=tbhb_rules_playwright=../rules/playwright`.
+bazel_dep(name = "tbhb_rules_playwright", version = "0.0.0", dev_dependency = True)
+git_override(
+    module_name = "tbhb_rules_playwright",
+    commit = "b8178a163b0e758c115309b609a79dd8cdf4b713",
+    remote = "https://github.com/tbhb-dev/rules.git",
+    strip_prefix = "playwright",
+)
+
+# Storybook's build, its browser tests with the a11y check, and
+# storybook_dev, for the four Storybooks under storybook/. Same pin as
+# tbhb_rules; locally,
+# `common --override_module=tbhb_rules_storybook=../rules/storybook`.
+bazel_dep(name = "tbhb_rules_storybook", version = "0.0.0", dev_dependency = True)
+git_override(
+    module_name = "tbhb_rules_storybook",
+    commit = "b8178a163b0e758c115309b609a79dd8cdf4b713",
+    remote = "https://github.com/tbhb-dev/rules.git",
+    strip_prefix = "storybook",
 )
 
 # The workspace's npm packages (package.json, pnpm-workspace.yaml and each
@@ -57,6 +80,10 @@ npm.npm_translate_lock(
         "//:pnpm-workspace.yaml",
         "//packages/tokens:package.json",
         "//site:package.json",
+        "//storybook/astro:package.json",
+        "//storybook/html:package.json",
+        "//storybook/react:package.json",
+        "//storybook/web-components:package.json",
     ],
     lifecycle_hooks = {"*": []},
     pnpm_lock = "//:pnpm-lock.yaml",

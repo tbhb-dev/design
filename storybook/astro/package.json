@@ -1,0 +1,11 @@
+{
+  "name": "@tbhb-dev/storybook-astro",
+  "version": "0.0.0",
+  "private": true,
+  "type": "module",
+  "description": "The Astro Storybook, served at design.tbhb.dev/storybook/astro/.",
+  "license": "Apache-2.0",
+  "dependencies": {
+    "astro": "7.4.5"
+  }
+}
