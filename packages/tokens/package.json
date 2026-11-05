@@ -4,5 +4,8 @@
   "private": true,
   "type": "module",
   "description": "Design tokens for tbhb.dev projects.",
-  "license": "Apache-2.0"
+  "license": "Apache-2.0",
+  "exports": {
+    "./tokens.css": "./tokens.css"
+  }
 }

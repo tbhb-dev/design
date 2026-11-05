@@ -18,14 +18,24 @@ importers:
 
   storybook/astro:
     dependencies:
+      '@tbhb-dev/tokens':
+        specifier: workspace:*
+        version: link:../../packages/tokens
       astro:
         specifier: 7.4.5
         version: 7.4.5(yaml@2.9.1)
 
-  storybook/html: {}
+  storybook/html:
+    dependencies:
+      '@tbhb-dev/tokens':
+        specifier: workspace:*
+        version: link:../../packages/tokens
 
   storybook/react:
     dependencies:
+      '@tbhb-dev/tokens':
+        specifier: workspace:*
+        version: link:../../packages/tokens
       react:
         specifier: 19.3.1
         version: 19.3.1
@@ -35,6 +45,9 @@ importers:
 
   storybook/web-components:
     dependencies:
+      '@tbhb-dev/tokens':
+        specifier: workspace:*
+        version: link:../../packages/tokens
       lit:
         specifier: 3.3.3
         version: 3.3.3

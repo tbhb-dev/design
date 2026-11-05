@@ -1,0 +1,47 @@
+// SPDX-License-Identifier: Apache-2.0
+// Copyright Tony Burns
+
+import { html } from "lit";
+
+const ROLES = ["neutral", "accent", "success", "warning", "danger", "info"];
+const STEPS = Array.from({ length: 12 }, (_, i) => i + 1);
+const label = (role: string) => role[0].toUpperCase() + role.slice(1);
+
+const chip = (role: string, fill: string, text: string) =>
+  html`<span
+    style="background: var(--color-${role}-${fill}); color: var(--color-${role}-contrast); padding: var(--space-1) var(--space-3); border-radius: var(--radius-2)"
+    >${text}</span
+  >`;
+
+const scale = (role: string) => html`
+  <section>
+    <h2>${label(role)}</h2>
+    <ol style="display: grid; grid-template-columns: repeat(12, 1fr); gap: var(--space-1); list-style: none; padding: 0">
+      ${STEPS.map(
+        (step) =>
+          html`<li>
+            <div style="height: 3rem; border-radius: var(--radius-2); background: var(--role-${role}-${step})"></div>
+            <span style="color: var(--color-text-muted)">${step}</span>
+          </li>`,
+      )}
+    </ol>
+    ${role === "neutral"
+      ? null
+      : html`<p style="display: flex; gap: var(--space-2); align-items: center">
+          ${chip(role, "solid", "Solid")}${chip(role, "solid-hover", "Solid hover")}
+          <span style="color: var(--color-${role}-text)">Text</span>
+        </p>`}
+  </section>
+`;
+
+export default { title: "Tokens/Color scales" };
+
+export const ColorScales = {
+  name: "Color scales",
+  render: () =>
+    html`<main style="padding: var(--space-4)">
+      <h1>Color scales</h1>
+      <p>Each role's 12 steps in the current theme and mode: 1–2 app backgrounds, 3–5 component backgrounds, 6–8 borders, 9–10 solid fills, 11–12 text.</p>
+      ${ROLES.map(scale)}
+    </main>`,
+};

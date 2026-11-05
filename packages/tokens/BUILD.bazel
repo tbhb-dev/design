@@ -1,6 +1,7 @@
 # SPDX-License-Identifier: Apache-2.0
 # Copyright Tony Burns
 
+load("@aspect_rules_js//npm:defs.bzl", "npm_package")
 load("@bazel_lib//lib:write_source_files.bzl", "write_source_files")
 load("@tbhb_rules//repo:defs.bzl", "repo_files")
 load("@tbhb_rules_tokens//:defs.bzl", "radix_palette_files", "radix_palettes", "tokens_css", "tokens_test")
@@ -93,5 +94,16 @@ tokens_css(
     srcs = TOKENS,
     out = "tokens.css",
     resolver = "tokens.resolver.json",
+    visibility = ["//visibility:public"],
+)
+
+# The package as the workspace links it: a dependency on @tbhb-dev/tokens
+# gets the built stylesheet as `@tbhb-dev/tokens/tokens.css`.
+npm_package(
+    name = "pkg",
+    srcs = [
+        "package.json",
+        ":css",
+    ],
     visibility = ["//visibility:public"],
 )

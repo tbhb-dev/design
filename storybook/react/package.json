@@ -6,6 +6,7 @@
   "description": "The React Storybook, served at design.tbhb.dev/storybook/react/.",
   "license": "Apache-2.0",
   "dependencies": {
+    "@tbhb-dev/tokens": "workspace:*",
     "react": "19.3.1",
     "react-dom": "19.3.1"
   }

@@ -6,6 +6,7 @@
   "description": "The Astro Storybook, served at design.tbhb.dev/storybook/astro/.",
   "license": "Apache-2.0",
   "dependencies": {
+    "@tbhb-dev/tokens": "workspace:*",
     "astro": "7.4.5"
   }
 }
