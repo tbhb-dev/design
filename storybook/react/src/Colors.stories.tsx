@@ -1,15 +1,20 @@
 // SPDX-License-Identifier: Apache-2.0
 // Copyright Tony Burns
 
-import { COLORS, SCALES, STEPS, USES, label, variable } from "./palette.ts";
+import type { CSSProperties } from "react";
+import { COLORS, SCALES, STEPS, USES, label, swatchName, swatchStep, variable } from "./palette.ts";
 
 function Swatch({ scale, step, alpha }: { scale: string; step: number; alpha: boolean }) {
   const name = variable(scale, step, alpha);
   return (
-    <div
+    <button
+      type="button"
       className={`tbhb-swatch ${alpha ? "tbhb-alpha" : "tbhb-solid"}`}
+      data-scale={scale}
+      data-step={swatchStep(step, alpha)}
+      aria-label={swatchName(scale, step, alpha)}
       title={name}
-      style={{ background: `var(${name})` }}
+      style={{ "--swatch": `var(${name})` } as CSSProperties}
     />
   );
 }

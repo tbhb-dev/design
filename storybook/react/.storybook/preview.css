@@ -11,6 +11,8 @@ body {
 
 /* The Colors and Color scales pages. */
 .tbhb-page {
+  max-width: 76rem;
+  margin-inline: auto;
   padding: var(--space-4);
 }
 
@@ -39,8 +41,29 @@ body {
 }
 
 .tbhb-swatch {
+  display: block;
+  width: 100%;
   height: 2.5rem;
+  border: 0;
+  padding: 0;
   border-radius: var(--radius-2);
+  background: var(--swatch);
+}
+
+button.tbhb-swatch {
+  cursor: pointer;
+}
+
+button.tbhb-swatch:focus-visible {
+  outline: 2px solid var(--color-text);
+  outline-offset: 2px;
+}
+
+/* An alpha step over a checkerboard, so its transparency shows. */
+.tbhb-alpha {
+  background:
+    linear-gradient(var(--swatch), var(--swatch)),
+    repeating-conic-gradient(var(--color-element-active) 0 25%, var(--color-background) 0 50%) 0 0 / 12px 12px;
 }
 
 .tbhb-mode {
@@ -66,4 +89,61 @@ body {
 .tbhb-colors:has(input[value="alpha"]:checked) .tbhb-solid,
 .tbhb-colors:has(input[value="solid"]:checked) .tbhb-alpha {
   display: none;
+}
+
+.tbhb-dialog {
+  width: min(32rem, calc(100vw - 2 * var(--space-4)));
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-4);
+  padding: var(--space-4);
+  background: var(--color-surface);
+  color: var(--color-text);
+}
+
+.tbhb-dialog::backdrop {
+  background: oklch(0 0 0 / 0.5);
+}
+
+.tbhb-dialog-preview {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-1);
+}
+
+.tbhb-dialog-preview .tbhb-swatch {
+  height: 8rem;
+}
+
+.tbhb-dialog h2 {
+  margin-block: var(--space-3) var(--space-2);
+}
+
+.tbhb-dialog h3 {
+  margin-block: var(--space-3) var(--space-1);
+  font-size: var(--font-size-2);
+  border-top: 1px solid var(--color-border-subtle);
+  padding-top: var(--space-3);
+}
+
+.tbhb-dialog dl {
+  display: grid;
+  grid-template-columns: 9rem 1fr;
+  gap: var(--space-1) var(--space-3);
+  margin: 0;
+}
+
+.tbhb-dialog dt {
+  color: var(--color-text-muted);
+}
+
+.tbhb-dialog dd {
+  margin: 0;
+  font-family: var(--font-family-mono);
+  font-size: var(--font-size-2);
+  overflow-wrap: anywhere;
+}
+
+.tbhb-dialog form {
+  margin-top: var(--space-4);
+  text-align: end;
 }

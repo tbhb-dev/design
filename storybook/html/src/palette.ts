@@ -28,7 +28,13 @@ export const variable = (scale: string, step: number, alpha = false) =>
   `--palette-${scale}-${alpha ? "a" : ""}${step}`;
 
 export const COLORS =
-  "Every scale in the palette library, in the current mode. Switch between the solid and alpha scales, and hover a swatch for its custom property.";
+  "Every scale in the palette library, in the current mode. Switch between the solid and alpha scales, and select a swatch for its values. Alpha steps sit over a checkerboard, so their transparency shows.";
 
 export const COLOR_SCALES =
   "Each scale's steps as Radix publishes them: solid and alpha, light and dark, whatever the toolbar's mode.";
+
+// A swatch's accessible name and its data-step: "Blue A9" and "a9".
+export const swatchName = (scale: string, step: number, alpha: boolean) =>
+  `${label(scale)} ${alpha ? "A" : ""}${step}`;
+
+export const swatchStep = (step: number, alpha: boolean) => `${alpha ? "a" : ""}${step}`;

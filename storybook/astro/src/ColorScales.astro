@@ -2,7 +2,7 @@
 // SPDX-License-Identifier: Apache-2.0
 // Copyright Tony Burns
 
-import { COLOR_SCALES, SCALES, STEPS, label, variable } from "./palette.ts";
+import { COLOR_SCALES, SCALES, STEPS, label, swatchName, swatchStep, variable } from "./palette.ts";
 
 const ROWS = [
   { mode: "light", rows: [{ suffix: "", alpha: false }, { suffix: " Alpha", alpha: true }] },
@@ -27,10 +27,14 @@ const ROWS = [
               <>
                 <span class="tbhb-name">{label(scale) + suffix}</span>
                 {STEPS.map((step) => (
-                  <div
-                    class="tbhb-swatch"
+                  <button
+                    type="button"
+                    class:list={["tbhb-swatch", alpha && "tbhb-alpha"]}
+                    data-scale={scale}
+                    data-step={swatchStep(step, alpha)}
+                    aria-label={swatchName(scale, step, alpha)}
                     title={variable(scale, step, alpha)}
-                    style={`background: var(${variable(scale, step, alpha)})`}
+                    style={`--swatch: var(${variable(scale, step, alpha)})`}
                   />
                 ))}
               </>

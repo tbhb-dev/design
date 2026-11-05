@@ -2,6 +2,7 @@
 // Copyright Tony Burns
 
 import "./preview.css";
+import "./swatch-dialog.ts";
 
 // Theme and mode switches in the toolbar. They set data-theme and
 // data-mode on the root element, where the tokens' selectors read them;

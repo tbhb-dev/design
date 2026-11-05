@@ -7,6 +7,7 @@
   "license": "Apache-2.0",
   "exports": {
     "./all.css": "./all.css",
-    "./tokens.css": "./tokens.css"
+    "./tokens.css": "./tokens.css",
+    "./palettes.json": "./palettes.json"
   }
 }

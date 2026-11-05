@@ -1,6 +1,7 @@
 # SPDX-License-Identifier: Apache-2.0
 # Copyright Tony Burns
 
+load("@aspect_rules_js//js:defs.bzl", "js_binary", "js_run_binary")
 load("@aspect_rules_js//npm:defs.bzl", "npm_package")
 load("@bazel_lib//lib:write_source_files.bzl", "write_source_files")
 load("@tbhb_rules//repo:defs.bzl", "repo_files")
@@ -133,15 +134,32 @@ tokens_css(
     visibility = ["//visibility:public"],
 )
 
+# Every palette value in one document, for the Storybooks' Colors page.
+js_binary(
+    name = "palettes_json_tool",
+    entry_point = "palettes_json.mjs",
+)
+
+js_run_binary(
+    name = "palettes_json",
+    srcs = ["palettes/" + f for f in radix_palette_files(SCALES) if f.endswith(".json")],
+    outs = ["palettes.json"],
+    args = ["palettes.json"] + ["palettes/" + f for f in radix_palette_files(SCALES) if f.endswith(".json")],
+    chdir = package_name(),
+    tool = ":palettes_json_tool",
+)
+
 # The package as the workspace links it: a dependency on @tbhb-dev/tokens
 # gets the built stylesheets as `@tbhb-dev/tokens/tokens.css` and
-# `@tbhb-dev/tokens/all.css`.
+# `@tbhb-dev/tokens/all.css`, and the palettes' values as
+# `@tbhb-dev/tokens/palettes.json`.
 npm_package(
     name = "pkg",
     srcs = [
         "package.json",
         ":all_css",
         ":css",
+        ":palettes_json",
     ],
     visibility = ["//visibility:public"],
 )

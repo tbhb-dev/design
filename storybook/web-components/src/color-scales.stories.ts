@@ -2,16 +2,20 @@
 // Copyright Tony Burns
 
 import { html } from "lit";
-import { COLOR_SCALES, SCALES, STEPS, label, variable } from "./palette.ts";
+import { COLOR_SCALES, SCALES, STEPS, label, swatchName, swatchStep, variable } from "./palette.ts";
 
 const row = (name: string, scale: string, alpha: boolean) =>
   html`<span class="tbhb-name">${name}</span>${STEPS.map(
       (step) =>
-        html`<div
-          class="tbhb-swatch"
+        html`<button
+          type="button"
+          class="tbhb-swatch ${alpha ? "tbhb-alpha" : ""}"
+          data-scale=${scale}
+          data-step=${swatchStep(step, alpha)}
+          aria-label=${swatchName(scale, step, alpha)}
           title=${variable(scale, step, alpha)}
-          style="background: var(${variable(scale, step, alpha)})"
-        ></div>`,
+          style="--swatch: var(${variable(scale, step, alpha)})"
+        ></button>`,
     )}`;
 
 const scaleSection = (scale: string) => html`<section>

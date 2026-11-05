@@ -1,18 +1,23 @@
 // SPDX-License-Identifier: Apache-2.0
 // Copyright Tony Burns
 
-import { COLOR_SCALES, SCALES, STEPS, label, variable } from "./palette.ts";
+import type { CSSProperties } from "react";
+import { COLOR_SCALES, SCALES, STEPS, label, swatchName, swatchStep, variable } from "./palette.ts";
 
 function Row({ name, scale, alpha }: { name: string; scale: string; alpha: boolean }) {
   return (
     <>
       <span className="tbhb-name">{name}</span>
       {STEPS.map((step) => (
-        <div
+        <button
           key={step}
-          className="tbhb-swatch"
+          type="button"
+          className={alpha ? "tbhb-swatch tbhb-alpha" : "tbhb-swatch"}
+          data-scale={scale}
+          data-step={swatchStep(step, alpha)}
+          aria-label={swatchName(scale, step, alpha)}
           title={variable(scale, step, alpha)}
-          style={{ background: `var(${variable(scale, step, alpha)})` }}
+          style={{ "--swatch": `var(${variable(scale, step, alpha)})` } as CSSProperties}
         />
       ))}
     </>

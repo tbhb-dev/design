@@ -1,10 +1,10 @@
 // SPDX-License-Identifier: Apache-2.0
 // Copyright Tony Burns
 
-import { COLORS, SCALES, STEPS, USES, label, variable } from "./palette.ts";
+import { COLORS, SCALES, STEPS, USES, label, swatchName, swatchStep, variable } from "./palette.ts";
 
 const swatch = (scale: string, step: number, alpha: boolean) =>
-  `<div class="tbhb-swatch ${alpha ? "tbhb-alpha" : "tbhb-solid"}" title="${variable(scale, step, alpha)}" style="background: var(${variable(scale, step, alpha)})"></div>`;
+  `<button type="button" class="tbhb-swatch ${alpha ? "tbhb-alpha" : "tbhb-solid"}" data-scale="${scale}" data-step="${swatchStep(step, alpha)}" aria-label="${swatchName(scale, step, alpha)}" title="${variable(scale, step, alpha)}" style="--swatch: var(${variable(scale, step, alpha)})"></button>`;
 
 export default { title: "Tokens/Colors" };
 
