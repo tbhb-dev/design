@@ -1,0 +1,26 @@
+{
+  "language": "en",
+  "ignorePaths": [
+    ".mise/**/*",
+    ".rumdl_cache/**/*",
+    ".vale/**/*",
+    ".venv/**/*",
+    "bazel-*/**/*",
+    ".bazel-*/**/*",
+    "coverage.xml",
+    "MODULE.bazel.lock",
+    "mise.lock",
+    "**/node_modules/**/*",
+    "pnpm-lock.yaml",
+    "tmp/**/*",
+    "uv.lock"
+  ],
+  "dictionaryDefinitions": [
+    {
+      "name": "tbhbdesign",
+      "path": "./.cspell-words.txt",
+      "addWords": true
+    }
+  ],
+  "dictionaries": ["tbhbdesign"]
+}

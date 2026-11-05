@@ -1,0 +1,8 @@
+{
+  "name": "@tbhb-dev/tokens",
+  "version": "0.0.0",
+  "private": true,
+  "type": "module",
+  "description": "Design tokens for tbhb.dev projects.",
+  "license": "Apache-2.0"
+}

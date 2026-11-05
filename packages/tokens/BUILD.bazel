@@ -1,0 +1,10 @@
+# SPDX-License-Identifier: Apache-2.0
+# Copyright Tony Burns
+
+load("@tbhb_rules//repo:defs.bzl", "repo_files")
+
+# This package's files, chained into //:repo_files for the whole-tree checks.
+repo_files()
+
+# npm_translate_lock in MODULE.bazel reads it.
+exports_files(["package.json"])
