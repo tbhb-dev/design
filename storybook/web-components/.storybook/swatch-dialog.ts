@@ -8,7 +8,7 @@
 
 import palettes from "@tbhb-dev/tokens/palettes.json";
 
-type Color = { components: number[]; alpha?: number; hex: string };
+type Color = { components: number[]; alpha?: number; hex: string; p3: number[] };
 type Palettes = Record<string, Record<string, Record<string, Color>>>;
 
 const USES = [
@@ -41,8 +41,21 @@ const PURPOSES = [
   "High-contrast text",
 ];
 
-const oklch = ({ components: [l, c, h], alpha }: Color) =>
-  `oklch(${l} ${c} ${h}${alpha === undefined ? "" : ` / ${alpha}`})`;
+const over = (alpha?: number) => (alpha === undefined ? "" : ` / ${alpha}`);
+
+const oklch = ({ components: [l, c, h], alpha }: Color) => `oklch(${l} ${c} ${h}${over(alpha)})`;
+
+// Display P3 and sRGB, the spaces native apps take: SwiftUI's
+// Color(.displayP3, ...), Android's ColorSpace.Named.DISPLAY_P3, and sRGB
+// hex everywhere. An alpha step's hex gains its alpha as a fourth byte.
+const displayP3 = ({ p3: [r, g, b], alpha }: Color) => `color(display-p3 ${r} ${g} ${b}${over(alpha)})`;
+
+const srgb = ({ hex, alpha }: Color) =>
+  alpha === undefined
+    ? hex
+    : `${hex}${Math.round(alpha * 255)
+        .toString(16)
+        .padStart(2, "0")}`;
 
 const label = (scale: string) => scale[0].toUpperCase() + scale.slice(1);
 
@@ -71,7 +84,8 @@ function values(title: string, variable: string, color: Color) {
     rows([
       ["Custom property", variable],
       ["oklch", oklch(color)],
-      ["Hex fallback", color.alpha === undefined ? color.hex : `${color.hex} at alpha ${color.alpha}`],
+      ["Display P3", displayP3(color)],
+      ["sRGB", srgb(color)],
     ]),
   );
 }
