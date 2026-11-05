@@ -1,0 +1,46 @@
+# SPDX-License-Identifier: Apache-2.0
+# Copyright Tony Burns
+
+load("@npm//:defs.bzl", "npm_link_all_packages")
+load("@tbhb_rules//repo:defs.bzl", "repo_files")
+load("@tbhb_rules_astro//:defs.bzl", "astro_build", "astro_check_test", "astro_dev")
+
+# This package's files, chained into //:repo_files for the whole-tree checks.
+repo_files()
+
+npm_link_all_packages(name = "node_modules")
+
+# npm_translate_lock in MODULE.bazel reads it.
+exports_files(["package.json"])
+
+SITE = glob(["**"])
+
+# The site's sources, for //dev:dev_test's copy of the workspace.
+filegroup(
+    name = "sources",
+    srcs = SITE,
+    visibility = ["//dev:__pkg__"],
+)
+
+# The static site, served at the root of design.tbhb.dev.
+astro_build(
+    name = "dist",
+    srcs = SITE,
+    node_modules = ":node_modules",
+    visibility = ["//visibility:public"],
+)
+
+astro_check_test(
+    name = "astro_check_test",
+    srcs = SITE,
+    node_modules = ":node_modules",
+    strip_prefix = "site",
+)
+
+# `bazel run //site:dev` serves the site alone; `bazel run //dev` serves it
+# with the Storybooks behind one port.
+astro_dev(
+    name = "dev",
+    node_modules = ":node_modules",
+    visibility = ["//dev:__pkg__"],
+)

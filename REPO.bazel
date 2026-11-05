@@ -9,6 +9,8 @@
 ignore_directories([
     ".git",
     ".claude/worktrees",
+    ".worktrees",
+    "**/.astro",
     "bazel-*",
     ".bazel-*",
     ".bazel_env",

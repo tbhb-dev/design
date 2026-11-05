@@ -5,7 +5,9 @@ __pycache__/
 *.pyc
 .cache/
 cache/
-node_modules/
+# No trailing slash: the dev targets link node_modules as a symlink, which a
+# directory-only pattern would miss.
+node_modules
 target/
 /build/
 /dist/
@@ -38,6 +40,10 @@ coverage.*
 mise.local.toml
 .claude/settings.local.json
 .claude/worktrees/
+# Git worktrees for branch work; the main worktree stays on main.
+/.worktrees/
+# Astro's generated types and dev-server state.
+.astro/
 tmp/
 # Drafted pull request bodies, read when the pull request is opened.
 .github/PULL_REQUEST_DRAFT.md

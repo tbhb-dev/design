@@ -1,0 +1,44 @@
+# SPDX-License-Identifier: Apache-2.0
+# Copyright Tony Burns
+
+load("@aspect_rules_js//js:defs.bzl", "js_binary", "js_test")
+load("@tbhb_rules//repo:defs.bzl", "repo_files")
+
+# This package's files, chained into //:repo_files for the whole-tree checks.
+repo_files()
+
+# Every dev server, at the prefix it has on design.tbhb.dev. Each server
+# runs with its prefix as its base path, so the proxy forwards paths as
+# they are.
+SERVERS = {
+    "/": "//site:dev",
+}
+
+# `bazel run //dev -- --port 4300` serves every dev server behind one port.
+# It suits a background job: no prompts, no browser, one "ready" line, and
+# exit 0 on SIGINT or SIGTERM. The routes go in env, not args, so a program
+# that starts the binary directly keeps them.
+js_binary(
+    name = "dev",
+    data = SERVERS.values(),
+    entry_point = "proxy.mjs",
+    env = {
+        "DEV_ROUTES": ";".join(["{}=$(rlocationpath {})".format(prefix, target) for prefix, target in SERVERS.items()]),
+    },
+)
+
+# The proxy over a copy of the site: it serves / once every server answers,
+# refuses a bad argument, and exits 0 on SIGTERM.
+js_test(
+    name = "dev_test",
+    args = ["$(rootpath :dev)"],
+    # The site's sources are read and copied as they are, from another
+    # package, so they stay in the source tree.
+    copy_data_to_bin = False,
+    data = [
+        ":dev",
+        "//site:sources",
+    ],
+    entry_point = "dev_test.mjs",
+    env = {"SITE_FILES": "$(rootpaths //site:sources)"},
+)

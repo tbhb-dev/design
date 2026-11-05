@@ -50,7 +50,7 @@ jobs:
       # complexipy's source wheel on Linux arm64, and fetches the targets
       # with retries.
       - name: Set up Bazel for CI
-        uses: tbhb-dev/rules/.github/actions/setup-bazel-ci@4518bc2ba695ad003bd18bb52f9c8dde463af19a  # main
+        uses: tbhb-dev/rules/.github/actions/setup-bazel-ci@addcdb509868433f2d7b5d75df5d8374c72354f2  # main
         with:
           disk-cache: ${{ github.workflow }}-${{ matrix.os }}
           cache-save: ${{ github.event_name != 'pull_request' }}
@@ -80,7 +80,7 @@ jobs:
     name: repo
     permissions:
       contents: read
-    uses: tbhb-dev/rules/.github/workflows/repo-checks.yml@4518bc2ba695ad003bd18bb52f9c8dde463af19a  # main
+    uses: tbhb-dev/rules/.github/workflows/repo-checks.yml@addcdb509868433f2d7b5d75df5d8374c72354f2  # main
     with:
       timeout-minutes: 10
       pip-audit-target: ""
@@ -97,6 +97,6 @@ jobs:
     timeout-minutes: 5
     steps:
       - name: Fail if any needed job did not succeed
-        uses: tbhb-dev/rules/.github/actions/ci-conclusion@4518bc2ba695ad003bd18bb52f9c8dde463af19a  # main
+        uses: tbhb-dev/rules/.github/actions/ci-conclusion@addcdb509868433f2d7b5d75df5d8374c72354f2  # main
         with:
           needs: ${{ toJSON(needs) }}

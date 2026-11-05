@@ -20,11 +20,13 @@ rules:
       - renovate.yaml
       - renovate-config-validator.yaml
       - ci.yml
+      - pages.yml
   ref-version-mismatch:
     ignore:
       - renovate.yaml
       - renovate-config-validator.yaml
       - ci.yml
+      - pages.yml
   # Off until actionlint accepts GitHub's `$/` self-repository syntax
   # (actionlint issue 711), which zizmor asks for in place of `./`.
   self-repository:
