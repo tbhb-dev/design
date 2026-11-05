@@ -156,3 +156,9 @@ description = "The awrel MCP server reads its connect token from a file; .mcp.js
 paths = ['''^\.mcp\.json$''']
 regexTarget = "line"
 regexes = ['''"AWREL_CONNECT_TOKEN_FILE": "\$\{HOME\}/\.config/awrel/prd-connect-token"''']
+
+[[rules.allowlists]]
+description = "tools/interim/agent_identity.py, a verbatim copy of ascm's script, falls back to Codex's default home directory, which names no credential"
+paths = ['''^tools/interim/agent_identity\.py$''']
+regexTarget = "line"
+regexes = ['''Path\("~/\.codex"\)\.expanduser\(\)''']

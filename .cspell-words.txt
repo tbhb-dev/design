@@ -13,6 +13,7 @@ bxox
 cgnat
 complexipy
 depcruise
+expanduser
 filegroup
 frontmatter
 genrule
@@ -22,6 +23,7 @@ heapdump
 hermeticity
 hprof
 hskey
+jsonschema
 keepalive
 knip
 lockfiles
@@ -38,6 +40,7 @@ prek
 pycache
 pyproject
 pytest
+pyyaml
 regenerable
 rlocation
 rlocationpath
@@ -52,6 +55,7 @@ shfmt
 skylib
 srcs
 starlark
+subdirs
 tailnet
 tbhb
 tbhbdesign
