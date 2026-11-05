@@ -11,6 +11,7 @@ ignore_directories([
     ".claude/worktrees",
     ".worktrees",
     "**/.astro",
+    "**/.tbhb-storybook",
     "bazel-*",
     ".bazel-*",
     ".bazel_env",

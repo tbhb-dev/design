@@ -1,0 +1,53 @@
+# SPDX-License-Identifier: Apache-2.0
+# Copyright Tony Burns
+
+load("@npm//:defs.bzl", "npm_link_all_packages")
+load("@tbhb_rules//repo:defs.bzl", "repo_files")
+load("@tbhb_rules_storybook//:defs.bzl", "storybook_build", "storybook_dev", "storybook_test")
+
+# This package's files, chained into //:repo_files for the whole-tree checks.
+repo_files()
+
+npm_link_all_packages(name = "node_modules")
+
+# npm_translate_lock in MODULE.bazel reads it.
+exports_files(["package.json"])
+
+SRCS = glob([
+    ".storybook/**",
+    "src/**",
+]) + ["package.json"]
+
+# This Storybook's sources, for //dev:dev_test's copy of the workspace.
+filegroup(
+    name = "sources",
+    srcs = SRCS,
+    visibility = ["//dev:__pkg__"],
+)
+
+# The static Storybook, served at /storybook/react/ on design.tbhb.dev.
+storybook_build(
+    name = "dist",
+    srcs = SRCS,
+    framework = "react",
+    node_modules = ":node_modules",
+    visibility = ["//pages:__pkg__"],
+)
+
+# Every story rendered in the pinned Chromium, with the a11y check failing
+# on any violation.
+storybook_test(
+    name = "storybook_test",
+    srcs = SRCS,
+    framework = "react",
+    node_modules = ":node_modules",
+)
+
+# `bazel run //storybook/react:dev` serves this Storybook alone; `bazel run
+# //dev` serves it at /storybook/react/ beside the site.
+storybook_dev(
+    name = "dev",
+    framework = "react",
+    node_modules = ":node_modules",
+    visibility = ["//dev:__pkg__"],
+)

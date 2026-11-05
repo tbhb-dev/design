@@ -1,11 +1,12 @@
 // SPDX-License-Identifier: Apache-2.0
 // Copyright Tony Burns
 
-// Runs //dev:dev over a copy of the site, the way `bazel run` would in a
-// workspace: a bad argument is refused, then the proxy prints its ready
-// line, serves the site at /, and exits 0 on SIGTERM.
+// Runs //dev:dev over a copy of every server's sources, the way `bazel run`
+// would in a workspace: a bad argument is refused, then the proxy prints its
+// ready line, serves the site at / and each Storybook at its prefix, and
+// exits 0 on SIGTERM.
 //
-// Usage: dev_test.mjs <dev binary>, with SITE_FILES listing the site's
+// Usage: dev_test.mjs <dev binary>, with WORKSPACE_FILES listing the site's
 // sources.
 
 import { spawn } from "node:child_process";
@@ -14,7 +15,7 @@ import { createServer } from "node:net";
 import { dirname, join } from "node:path";
 
 const [devBin] = process.argv.slice(2);
-const files = (process.env.SITE_FILES ?? "").split(" ").filter(Boolean);
+const files = (process.env.WORKSPACE_FILES ?? "").split(" ").filter(Boolean);
 const failures = [];
 
 const workspace = join(process.env.TEST_TMPDIR, "workspace");
@@ -105,6 +106,22 @@ if (state !== "ready") {
   if (res.status !== 200 || !body.includes("tbhb.dev design system")) {
     failures.push(`GET /: expected 200 with the site's heading, got ${res.status}`);
   }
+  for (const framework of ["astro", "html", "react", "web-components"]) {
+    const prefix = `/storybook/${framework}/`;
+    const sb = await fetch(`http://127.0.0.1:${port}${prefix}`);
+    await sb.text();
+    if (sb.status !== 200) {
+      failures.push(`GET ${prefix}: expected 200, got ${sb.status}`);
+    }
+    const bare = await fetch(`http://127.0.0.1:${port}${prefix.slice(0, -1)}`, {
+      redirect: "manual",
+    });
+    if (bare.status !== 301 || bare.headers.get("location") !== prefix) {
+      failures.push(
+        `GET ${prefix.slice(0, -1)}: expected a 301 to ${prefix}, got ${bare.status}`,
+      );
+    }
+  }
 }
 child.kill("SIGTERM");
 const code = await within(exited, 30_000, "timeout");
@@ -117,4 +134,6 @@ if (failures.length > 0) {
   console.error(failures.join("\n"));
   process.exit(1);
 }
-console.log("dev_test: refused a bad argument, served /, exited 0 on SIGTERM");
+console.log(
+  "dev_test: refused a bad argument, served / and every Storybook, exited 0 on SIGTERM",
+);
