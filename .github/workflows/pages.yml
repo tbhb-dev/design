@@ -39,7 +39,7 @@ jobs:
           persist-credentials: false
 
       - name: Set up Bazel for CI
-        uses: tbhb-dev/rules/.github/actions/setup-bazel-ci@3ac3cc3b41d2c66a37cc408e039ae26f7eaa3ef6  # main
+        uses: tbhb-dev/rules/.github/actions/setup-bazel-ci@addcdb509868433f2d7b5d75df5d8374c72354f2  # main
         with:
           disk-cache: ${{ github.workflow }}-ubuntu-26.04
           cache-save: ${{ github.event_name != 'pull_request' }}
