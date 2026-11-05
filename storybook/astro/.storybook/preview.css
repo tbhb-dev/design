@@ -4,30 +4,30 @@
 @import "@tbhb-dev/tokens/all.css";
 
 body {
-  background: var(--color-background);
-  color: var(--color-text);
-  font-family: var(--font-family-sans);
+  background: var(--tbhb-color-background);
+  color: var(--tbhb-color-text);
+  font-family: var(--tbhb-font-family-sans);
 }
 
 /* The Colors and Color scales pages. */
 .tbhb-page {
   max-width: 76rem;
   margin-inline: auto;
-  padding: var(--space-4);
+  padding: var(--tbhb-space-4);
 }
 
 .tbhb-grid {
   display: grid;
   grid-template-columns: 9rem repeat(12, minmax(0, 1fr));
-  gap: var(--space-1);
+  gap: var(--tbhb-space-1);
   align-items: center;
 }
 
 .tbhb-use,
 .tbhb-step,
 .tbhb-name {
-  font-size: var(--font-size-1);
-  color: var(--color-text-muted);
+  font-size: var(--tbhb-font-size-1);
+  color: var(--tbhb-color-text-muted);
 }
 
 .tbhb-use,
@@ -36,8 +36,8 @@ body {
 }
 
 .tbhb-use {
-  border-bottom: 1px solid var(--color-border-subtle);
-  padding-bottom: var(--space-1);
+  border-bottom: 1px solid var(--tbhb-color-border-subtle);
+  padding-bottom: var(--tbhb-space-1);
 }
 
 .tbhb-swatch {
@@ -46,8 +46,8 @@ body {
   height: 2.5rem;
   border: 0;
   padding: 0;
-  border-radius: var(--radius-2);
-  background: var(--swatch);
+  border-radius: var(--tbhb-radius-2);
+  background: var(--tbhb-swatch);
 }
 
 button.tbhb-swatch {
@@ -55,35 +55,35 @@ button.tbhb-swatch {
 }
 
 button.tbhb-swatch:focus-visible {
-  outline: 2px solid var(--color-text);
+  outline: 2px solid var(--tbhb-color-text);
   outline-offset: 2px;
 }
 
 /* An alpha step over a checkerboard, so its transparency shows. */
 .tbhb-alpha {
   background:
-    linear-gradient(var(--swatch), var(--swatch)),
-    repeating-conic-gradient(var(--color-element-active) 0 25%, var(--color-background) 0 50%) 0 0 / 12px 12px;
+    linear-gradient(var(--tbhb-swatch), var(--tbhb-swatch)),
+    repeating-conic-gradient(var(--tbhb-color-element-active) 0 25%, var(--tbhb-color-background) 0 50%) 0 0 / 12px 12px;
 }
 
 .tbhb-mode {
-  background: var(--color-background);
-  color: var(--color-text);
-  padding: var(--space-2);
-  border-radius: var(--radius-3);
-  margin-block: var(--space-2);
+  background: var(--tbhb-color-background);
+  color: var(--tbhb-color-text);
+  padding: var(--tbhb-space-2);
+  border-radius: var(--tbhb-radius-3);
+  margin-block: var(--tbhb-space-2);
 }
 
 .tbhb-mode .tbhb-name {
-  color: var(--color-text-muted);
+  color: var(--tbhb-color-text-muted);
 }
 
 .tbhb-toggle {
   display: flex;
-  gap: var(--space-3);
-  border: 1px solid var(--color-border);
-  border-radius: var(--radius-3);
-  margin-block: var(--space-4);
+  gap: var(--tbhb-space-3);
+  border: 1px solid var(--tbhb-color-border);
+  border-radius: var(--tbhb-radius-3);
+  margin-block: var(--tbhb-space-4);
 }
 
 .tbhb-colors:has(input[value="alpha"]:checked) .tbhb-solid,
@@ -92,12 +92,12 @@ button.tbhb-swatch:focus-visible {
 }
 
 .tbhb-dialog {
-  width: min(32rem, calc(100vw - 2 * var(--space-4)));
-  border: 1px solid var(--color-border);
-  border-radius: var(--radius-4);
-  padding: var(--space-4);
-  background: var(--color-surface);
-  color: var(--color-text);
+  width: min(32rem, calc(100vw - 2 * var(--tbhb-space-4)));
+  border: 1px solid var(--tbhb-color-border);
+  border-radius: var(--tbhb-radius-4);
+  padding: var(--tbhb-space-4);
+  background: var(--tbhb-color-surface);
+  color: var(--tbhb-color-text);
 }
 
 .tbhb-dialog::backdrop {
@@ -107,7 +107,7 @@ button.tbhb-swatch:focus-visible {
 .tbhb-dialog-preview {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: var(--space-1);
+  gap: var(--tbhb-space-1);
 }
 
 .tbhb-dialog-preview .tbhb-swatch {
@@ -115,35 +115,35 @@ button.tbhb-swatch:focus-visible {
 }
 
 .tbhb-dialog h2 {
-  margin-block: var(--space-3) var(--space-2);
+  margin-block: var(--tbhb-space-3) var(--tbhb-space-2);
 }
 
 .tbhb-dialog h3 {
-  margin-block: var(--space-3) var(--space-1);
-  font-size: var(--font-size-2);
-  border-top: 1px solid var(--color-border-subtle);
-  padding-top: var(--space-3);
+  margin-block: var(--tbhb-space-3) var(--tbhb-space-1);
+  font-size: var(--tbhb-font-size-2);
+  border-top: 1px solid var(--tbhb-color-border-subtle);
+  padding-top: var(--tbhb-space-3);
 }
 
 .tbhb-dialog dl {
   display: grid;
   grid-template-columns: 9rem 1fr;
-  gap: var(--space-1) var(--space-3);
+  gap: var(--tbhb-space-1) var(--tbhb-space-3);
   margin: 0;
 }
 
 .tbhb-dialog dt {
-  color: var(--color-text-muted);
+  color: var(--tbhb-color-text-muted);
 }
 
 .tbhb-dialog dd {
   margin: 0;
-  font-family: var(--font-family-mono);
-  font-size: var(--font-size-2);
+  font-family: var(--tbhb-font-family-mono);
+  font-size: var(--tbhb-font-size-2);
   overflow-wrap: anywhere;
 }
 
 .tbhb-dialog form {
-  margin-top: var(--space-4);
+  margin-top: var(--tbhb-space-4);
   text-align: end;
 }

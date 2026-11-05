@@ -114,11 +114,13 @@ tokens_test(
 )
 
 # The stylesheet: the default theme at :root, each theme at [data-theme],
-# dark from prefers-color-scheme unless [data-mode] sets it.
+# dark from prefers-color-scheme unless [data-mode] sets it. Every custom
+# property is --tbhb-*, so it never collides with a page's own.
 tokens_css(
     name = "css",
     srcs = TOKENS,
     out = "tokens.css",
+    prefix = "tbhb",
     resolver = "tokens.resolver.json",
     visibility = ["//visibility:public"],
 )
@@ -130,6 +132,7 @@ tokens_css(
     srcs = TOKENS,
     out = "all.css",
     palette = "",
+    prefix = "tbhb",
     resolver = "tokens.resolver.json",
     visibility = ["//visibility:public"],
 )

@@ -14,7 +14,7 @@ function Swatch({ scale, step, alpha }: { scale: string; step: number; alpha: bo
       data-step={swatchStep(step, alpha)}
       aria-label={swatchName(scale, step, alpha)}
       title={name}
-      style={{ "--swatch": `var(${name})` } as CSSProperties}
+      style={{ "--tbhb-swatch": `var(${name})` } as CSSProperties}
     />
   );
 }

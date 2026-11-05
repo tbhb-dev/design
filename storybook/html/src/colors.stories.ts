@@ -4,7 +4,7 @@
 import { COLORS, SCALES, STEPS, USES, label, swatchName, swatchStep, variable } from "./palette.ts";
 
 const swatch = (scale: string, step: number, alpha: boolean) =>
-  `<button type="button" class="tbhb-swatch ${alpha ? "tbhb-alpha" : "tbhb-solid"}" data-scale="${scale}" data-step="${swatchStep(step, alpha)}" aria-label="${swatchName(scale, step, alpha)}" title="${variable(scale, step, alpha)}" style="--swatch: var(${variable(scale, step, alpha)})"></button>`;
+  `<button type="button" class="tbhb-swatch ${alpha ? "tbhb-alpha" : "tbhb-solid"}" data-scale="${scale}" data-step="${swatchStep(step, alpha)}" aria-label="${swatchName(scale, step, alpha)}" title="${variable(scale, step, alpha)}" style="--tbhb-swatch: var(${variable(scale, step, alpha)})"></button>`;
 
 export default { title: "Tokens/Colors" };
 

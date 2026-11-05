@@ -12,7 +12,7 @@ const swatch = (scale: string, step: number, alpha: boolean) =>
     data-step=${swatchStep(step, alpha)}
     aria-label=${swatchName(scale, step, alpha)}
     title=${variable(scale, step, alpha)}
-    style="--swatch: var(${variable(scale, step, alpha)})"
+    style="--tbhb-swatch: var(${variable(scale, step, alpha)})"
   ></button>`;
 
 export default { title: "Tokens/Colors" };

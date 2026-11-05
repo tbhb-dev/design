@@ -17,7 +17,7 @@ function Row({ name, scale, alpha }: { name: string; scale: string; alpha: boole
           data-step={swatchStep(step, alpha)}
           aria-label={swatchName(scale, step, alpha)}
           title={variable(scale, step, alpha)}
-          style={{ "--swatch": `var(${variable(scale, step, alpha)})` } as CSSProperties}
+          style={{ "--tbhb-swatch": `var(${variable(scale, step, alpha)})` } as CSSProperties}
         />
       ))}
     </>

@@ -6,7 +6,7 @@ import { COLOR_SCALES, SCALES, STEPS, label, swatchName, swatchStep, variable } 
 const row = (name: string, scale: string, alpha: boolean) =>
   `<span class="tbhb-name">${name}</span>${STEPS.map(
     (step) =>
-      `<button type="button" class="tbhb-swatch${alpha ? " tbhb-alpha" : ""}" data-scale="${scale}" data-step="${swatchStep(step, alpha)}" aria-label="${swatchName(scale, step, alpha)}" title="${variable(scale, step, alpha)}" style="--swatch: var(${variable(scale, step, alpha)})"></button>`,
+      `<button type="button" class="tbhb-swatch${alpha ? " tbhb-alpha" : ""}" data-scale="${scale}" data-step="${swatchStep(step, alpha)}" aria-label="${swatchName(scale, step, alpha)}" title="${variable(scale, step, alpha)}" style="--tbhb-swatch: var(${variable(scale, step, alpha)})"></button>`,
   ).join("")}`;
 
 const scaleSection = (scale: string) => `<section>

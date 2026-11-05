@@ -97,8 +97,8 @@ function open(swatch: HTMLElement) {
     swatch.closest<HTMLElement>("[data-mode]")?.dataset.mode ??
     (matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light");
   const scales = (palettes as Palettes)[mode];
-  const solid = `--palette-${scale}-${n}`;
-  const alpha = `--palette-${scale}-a${n}`;
+  const solid = `--tbhb-palette-${scale}-${n}`;
+  const alpha = `--tbhb-palette-${scale}-a${n}`;
 
   const dialog = element("dialog", {
     class: "tbhb-dialog",
@@ -109,8 +109,8 @@ function open(swatch: HTMLElement) {
     element(
       "div",
       { class: "tbhb-dialog-preview" },
-      element("div", { class: "tbhb-swatch tbhb-solid", style: `--swatch: var(${solid})` }),
-      element("div", { class: "tbhb-swatch tbhb-alpha", style: `--swatch: var(${alpha})` }),
+      element("div", { class: "tbhb-swatch tbhb-solid", style: `--tbhb-swatch: var(${solid})` }),
+      element("div", { class: "tbhb-swatch tbhb-alpha", style: `--tbhb-swatch: var(${alpha})` }),
     ),
     element("h2", { id: "tbhb-dialog-title" }, `${label(scale)} ${step.toUpperCase()}`),
     rows([

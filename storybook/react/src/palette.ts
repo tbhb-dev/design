@@ -23,9 +23,9 @@ export const USES = [
 
 export const label = (scale: string) => scale[0].toUpperCase() + scale.slice(1);
 
-// A step's custom property: `--palette-blue-9`, or `--palette-blue-a9`.
+// A step's custom property: `--tbhb-palette-blue-9`, or `--tbhb-palette-blue-a9`.
 export const variable = (scale: string, step: number, alpha = false) =>
-  `--palette-${scale}-${alpha ? "a" : ""}${step}`;
+  `--tbhb-palette-${scale}-${alpha ? "a" : ""}${step}`;
 
 export const COLORS =
   "Every scale in the palette library, in the current mode. Switch between the solid and alpha scales, and select a swatch for its values. Alpha steps sit over a checkerboard, so their transparency shows.";
