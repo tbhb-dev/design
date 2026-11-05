@@ -1,58 +1,37 @@
 // SPDX-License-Identifier: Apache-2.0
 // Copyright Tony Burns
 
-const ROLES = ["neutral", "accent", "success", "warning", "danger", "info"];
-const STEPS = Array.from({ length: 12 }, (_, i) => i + 1);
-const label = (role: string) => role[0].toUpperCase() + role.slice(1);
+import { COLOR_SCALES, SCALES, STEPS, label, variable } from "./palette.ts";
 
-function Chip({ role, fill, text }: { role: string; fill: string; text: string }) {
+function Row({ name, scale, alpha }: { name: string; scale: string; alpha: boolean }) {
   return (
-    <span
-      style={{
-        background: `var(--color-${role}-${fill})`,
-        color: `var(--color-${role}-contrast)`,
-        padding: "var(--space-1) var(--space-3)",
-        borderRadius: "var(--radius-2)",
-      }}
-    >
-      {text}
-    </span>
+    <>
+      <span className="tbhb-name">{name}</span>
+      {STEPS.map((step) => (
+        <div
+          key={step}
+          className="tbhb-swatch"
+          title={variable(scale, step, alpha)}
+          style={{ background: `var(${variable(scale, step, alpha)})` }}
+        />
+      ))}
+    </>
   );
 }
 
-function Scale({ role }: { role: string }) {
+function Scale({ scale }: { scale: string }) {
+  const name = label(scale);
   return (
     <section>
-      <h2>{label(role)}</h2>
-      <ol
-        style={{
-          display: "grid",
-          gridTemplateColumns: "repeat(12, 1fr)",
-          gap: "var(--space-1)",
-          listStyle: "none",
-          padding: 0,
-        }}
-      >
-        {STEPS.map((step) => (
-          <li key={step}>
-            <div
-              style={{
-                height: "3rem",
-                borderRadius: "var(--radius-2)",
-                background: `var(--role-${role}-${step})`,
-              }}
-            />
-            <span style={{ color: "var(--color-text-muted)" }}>{step}</span>
-          </li>
-        ))}
-      </ol>
-      {role === "neutral" ? null : (
-        <p style={{ display: "flex", gap: "var(--space-2)", alignItems: "center" }}>
-          <Chip role={role} fill="solid" text="Solid" />
-          <Chip role={role} fill="solid-hover" text="Solid hover" />
-          <span style={{ color: `var(--color-${role}-text)` }}>Text</span>
-        </p>
-      )}
+      <h2>{name}</h2>
+      <div className="tbhb-grid tbhb-mode" data-mode="light">
+        <Row name={name} scale={scale} alpha={false} />
+        <Row name={`${name} Alpha`} scale={scale} alpha />
+      </div>
+      <div className="tbhb-grid tbhb-mode" data-mode="dark">
+        <Row name={`${name} Dark`} scale={scale} alpha={false} />
+        <Row name={`${name} Dark Alpha`} scale={scale} alpha />
+      </div>
     </section>
   );
 }
@@ -62,11 +41,19 @@ export default { title: "Tokens/Color scales" };
 export const ColorScales = {
   name: "Color scales",
   render: () => (
-    <main style={{ padding: "var(--space-4)" }}>
+    <main className="tbhb-page">
       <h1>Color scales</h1>
-      <p>Each role's 12 steps in the current theme and mode: 1–2 app backgrounds, 3–5 component backgrounds, 6–8 borders, 9–10 solid fills, 11–12 text.</p>
-      {ROLES.map((role) => (
-        <Scale key={role} role={role} />
+      <p>{COLOR_SCALES}</p>
+      <div className="tbhb-grid">
+        <span />
+        {STEPS.map((step) => (
+          <span key={step} className="tbhb-step">
+            {step}
+          </span>
+        ))}
+      </div>
+      {SCALES.map((scale) => (
+        <Scale key={scale} scale={scale} />
       ))}
     </main>
   ),

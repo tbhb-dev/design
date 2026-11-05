@@ -1,10 +1,69 @@
 /* SPDX-License-Identifier: Apache-2.0 */
 /* Copyright Tony Burns */
 
-@import "@tbhb-dev/tokens/tokens.css";
+@import "@tbhb-dev/tokens/all.css";
 
 body {
   background: var(--color-background);
   color: var(--color-text);
   font-family: var(--font-family-sans);
+}
+
+/* The Colors and Color scales pages. */
+.tbhb-page {
+  padding: var(--space-4);
+}
+
+.tbhb-grid {
+  display: grid;
+  grid-template-columns: 9rem repeat(12, minmax(0, 1fr));
+  gap: var(--space-1);
+  align-items: center;
+}
+
+.tbhb-use,
+.tbhb-step,
+.tbhb-name {
+  font-size: var(--font-size-1);
+  color: var(--color-text-muted);
+}
+
+.tbhb-use,
+.tbhb-step {
+  text-align: center;
+}
+
+.tbhb-use {
+  border-bottom: 1px solid var(--color-border-subtle);
+  padding-bottom: var(--space-1);
+}
+
+.tbhb-swatch {
+  height: 2.5rem;
+  border-radius: var(--radius-2);
+}
+
+.tbhb-mode {
+  background: var(--color-background);
+  color: var(--color-text);
+  padding: var(--space-2);
+  border-radius: var(--radius-3);
+  margin-block: var(--space-2);
+}
+
+.tbhb-mode .tbhb-name {
+  color: var(--color-text-muted);
+}
+
+.tbhb-toggle {
+  display: flex;
+  gap: var(--space-3);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-3);
+  margin-block: var(--space-4);
+}
+
+.tbhb-colors:has(input[value="alpha"]:checked) .tbhb-solid,
+.tbhb-colors:has(input[value="solid"]:checked) .tbhb-alpha {
+  display: none;
 }
