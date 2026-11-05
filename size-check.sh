@@ -1,4 +1,6 @@
 #!/usr/bin/env bash
+# SPDX-License-Identifier: Apache-2.0
+# Copyright Tony Burns
 # Portable Bash plus find/wc and Git; sizes are logical bytes, not allocated blocks.
 set -euo pipefail
 cd -- "$(dirname -- "$0")"

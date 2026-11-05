@@ -2,5 +2,6 @@
   "name": "tbhb-dev-design",
   "private": true,
   "type": "module",
-  "description": "The tbhb.dev design system workspace. Its packages publish under @tbhb-dev; the tools (TypeScript, Biome, ESLint, Vitest, Stryker) come from tbhb_rules_typescript, not from here."
+  "description": "The tbhb.dev design system workspace. Its packages publish under @tbhb-dev; the tools (TypeScript, Biome, ESLint, Vitest, Stryker) come from tbhb_rules_typescript, not from here.",
+  "license": "Apache-2.0"
 }

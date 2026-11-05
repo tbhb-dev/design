@@ -1,3 +1,6 @@
+# SPDX-License-Identifier: Apache-2.0
+# Copyright Tony Burns
+
 # Review edits to this file as security policy. Start from gitleaks' default
 # rules and allowlist only what is justified, each with a reason.
 [extend]

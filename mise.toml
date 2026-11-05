@@ -1,4 +1,7 @@
 #:schema https://mise.jdx.dev/schema/mise.json
+# SPDX-License-Identifier: Apache-2.0
+# Copyright Tony Burns
+
 # Tool bootstrap. Bazel pins and runs every gate (`bazelisk test //...`);
 # mise provides bazelisk and prek, and puts the Bazel-pinned tools the hooks
 # call on PATH.

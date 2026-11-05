@@ -1,6 +1,7 @@
 akia
 ascm
 awrel
+bazelignore
 bazelisk
 bazelrc
 bazelversion
