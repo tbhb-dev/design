@@ -1,0 +1,48 @@
+{
+  "name": "tbhb.dev",
+  "version": "2025.10",
+  "description": "Base tokens, the Radix Colors palette library in light and dark, themes that map roles onto palettes, and semantic tokens over the roles.",
+  "sets": {
+    "base": {
+      "sources": [{ "$ref": "base.tokens.json" }]
+    },
+    "semantic": {
+      "sources": [{ "$ref": "semantic.tokens.json" }]
+    }
+  },
+  "modifiers": {
+    "mode": {
+      "contexts": {
+        "light": [
+          { "$ref": "palettes/amber.light.tokens.json" },
+          { "$ref": "palettes/blue.light.tokens.json" },
+          { "$ref": "palettes/grass.light.tokens.json" },
+          { "$ref": "palettes/indigo.light.tokens.json" },
+          { "$ref": "palettes/red.light.tokens.json" },
+          { "$ref": "palettes/slate.light.tokens.json" }
+        ],
+        "dark": [
+          { "$ref": "palettes/amber.dark.tokens.json" },
+          { "$ref": "palettes/blue.dark.tokens.json" },
+          { "$ref": "palettes/grass.dark.tokens.json" },
+          { "$ref": "palettes/indigo.dark.tokens.json" },
+          { "$ref": "palettes/red.dark.tokens.json" },
+          { "$ref": "palettes/slate.dark.tokens.json" }
+        ]
+      },
+      "default": "light"
+    },
+    "theme": {
+      "contexts": {
+        "tbhb": [{ "$ref": "themes/tbhb.tokens.json" }]
+      },
+      "default": "tbhb"
+    }
+  },
+  "resolutionOrder": [
+    { "$ref": "#/sets/base" },
+    { "$ref": "#/modifiers/mode" },
+    { "$ref": "#/modifiers/theme" },
+    { "$ref": "#/sets/semantic" }
+  ]
+}

@@ -63,6 +63,16 @@ git_override(
     strip_prefix = "storybook",
 )
 
+# tbhb_rules_tokens comes from the same rules commit as tbhb_rules; locally,
+# `common --override_module=tbhb_rules_tokens=../rules/tokens`.
+bazel_dep(name = "tbhb_rules_tokens", version = "0.0.0", dev_dependency = True)
+git_override(
+    module_name = "tbhb_rules_tokens",
+    commit = "e47476b740b5fc54c90fd059035d60cd3048765a",
+    remote = "https://github.com/tbhb-dev/rules.git",
+    strip_prefix = "tokens",
+)
+
 # The workspace's npm packages (package.json, pnpm-workspace.yaml and each
 # packages/*/package.json, locked in pnpm-lock.yaml), every one pinned by
 # integrity hash, with no lifecycle script allowed to run.

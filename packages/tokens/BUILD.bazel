@@ -1,10 +1,97 @@
 # SPDX-License-Identifier: Apache-2.0
 # Copyright Tony Burns
 
+load("@bazel_lib//lib:write_source_files.bzl", "write_source_files")
 load("@tbhb_rules//repo:defs.bzl", "repo_files")
+load("@tbhb_rules_tokens//:defs.bzl", "radix_palette_files", "radix_palettes", "tokens_css", "tokens_test")
 
 # This package's files, chained into //:repo_files for the whole-tree checks.
 repo_files()
 
 # npm_translate_lock in MODULE.bazel reads it.
 exports_files(["package.json"])
+
+# The palette library: Radix Colors scales, generated into palettes/ with
+# their MIT sidecars. `bazel run //packages/tokens:palettes` rewrites them,
+# and palettes_test fails when a committed file differs. A theme maps roles
+# onto these scales; tokens_css leaves out any scale no theme uses.
+SCALES = [
+    "amber",
+    "blue",
+    "grass",
+    "indigo",
+    "red",
+    "slate",
+]
+
+radix_palettes(
+    name = "radix",
+    scales = SCALES,
+)
+
+write_source_files(
+    name = "palettes",
+    files = {"palettes/" + f: ":radix/" + f for f in radix_palette_files(SCALES)},
+)
+
+TOKENS = glob(["**/*.tokens.json"])
+
+# Every theme × mode resolves, and text meets WCAG AA on the surfaces it
+# sits on, in each of them.
+tokens_test(
+    name = "tokens_test",
+    srcs = TOKENS,
+    contrast = [
+        {
+            "background": bg,
+            "foreground": fg,
+        }
+        for bg in [
+            "color.background",
+            "color.surface",
+        ]
+        for fg in [
+            "color.text",
+            "color.text-muted",
+        ]
+    ] + [
+        {
+            "background": "color.background",
+            "foreground": "color.%s.text" % role,
+        }
+        for role in [
+            "accent",
+            "success",
+            "warning",
+            "danger",
+            "info",
+        ]
+    ] + [
+        {
+            "background": "color.%s.%s" % (role, fill),
+            "foreground": "color.%s.contrast" % role,
+        }
+        for role in [
+            "accent",
+            "success",
+            "warning",
+            "danger",
+            "info",
+        ]
+        for fill in [
+            "solid",
+            "solid-hover",
+        ]
+    ],
+    resolver = "tokens.resolver.json",
+)
+
+# The stylesheet: the default theme at :root, each theme at [data-theme],
+# dark from prefers-color-scheme unless [data-mode] sets it.
+tokens_css(
+    name = "css",
+    srcs = TOKENS,
+    out = "tokens.css",
+    resolver = "tokens.resolver.json",
+    visibility = ["//visibility:public"],
+)

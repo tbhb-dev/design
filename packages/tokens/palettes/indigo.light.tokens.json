@@ -1,0 +1,92 @@
+{
+  "palette": {
+    "indigo": {
+      "1": {
+        "$value": {
+          "colorSpace": "oklch",
+          "components": [0.9942, 0.0015, 286.37],
+          "hex": "#fdfdfe"
+        }
+      },
+      "2": {
+        "$value": {
+          "colorSpace": "oklch",
+          "components": [0.9829, 0.008, 271.38],
+          "hex": "#f7f9ff"
+        }
+      },
+      "3": {
+        "$value": {
+          "colorSpace": "oklch",
+          "components": [0.9607, 0.0172, 268.55],
+          "hex": "#edf2fe"
+        }
+      },
+      "4": {
+        "$value": {
+          "colorSpace": "oklch",
+          "components": [0.9353, 0.0338, 268.49],
+          "hex": "#e1e9ff"
+        }
+      },
+      "5": {
+        "$value": {
+          "colorSpace": "oklch",
+          "components": [0.9032, 0.0511, 269.98],
+          "hex": "#d2deff"
+        }
+      },
+      "6": {
+        "$value": {
+          "colorSpace": "oklch",
+          "components": [0.863, 0.0714, 271.51],
+          "hex": "#c1d0ff"
+        }
+      },
+      "7": {
+        "$value": {
+          "colorSpace": "oklch",
+          "components": [0.8068, 0.0869, 271.37],
+          "hex": "#abbdf9"
+        }
+      },
+      "8": {
+        "$value": {
+          "colorSpace": "oklch",
+          "components": [0.7301, 0.1133, 270.52],
+          "hex": "#8da4ef"
+        }
+      },
+      "9": {
+        "$value": {
+          "colorSpace": "oklch",
+          "components": [0.5436, 0.1912, 267.08],
+          "hex": "#3e63dd"
+        }
+      },
+      "10": {
+        "$value": {
+          "colorSpace": "oklch",
+          "components": [0.5112, 0.1946, 266.48],
+          "hex": "#3358d4"
+        }
+      },
+      "11": {
+        "$value": {
+          "colorSpace": "oklch",
+          "components": [0.5097, 0.1728, 267.11],
+          "hex": "#3a5bc7"
+        }
+      },
+      "12": {
+        "$value": {
+          "colorSpace": "oklch",
+          "components": [0.3126, 0.0856, 268.56],
+          "hex": "#1f2d5c"
+        }
+      },
+      "$type": "color",
+      "$description": "Radix Colors indigo, light, from @radix-ui/colors 3.0.0"
+    }
+  }
+}

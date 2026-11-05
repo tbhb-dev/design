@@ -75,3 +75,9 @@ xoxa
 xoxb
 xoxp
 zizmor
+Consolas
+Menlo
+oklch
+Segoe
+stylesheet
+WCAG
