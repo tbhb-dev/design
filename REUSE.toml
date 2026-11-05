@@ -14,6 +14,7 @@ path = [
   "mise.lock",
   "MODULE.bazel.lock",
   "**/pnpm-lock.yaml",
+  "uv.lock",
 ]
 SPDX-FileCopyrightText = "Tony Burns"
 SPDX-License-Identifier = "Apache-2.0"
@@ -23,6 +24,7 @@ SPDX-License-Identifier = "Apache-2.0"
 [[annotations]]
 path = [
   "**/.bazelversion",
+  ".python-version",
   "**/.bazelignore",
   ".gitleaksignore",
   ".rylignore",
