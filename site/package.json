@@ -1,0 +1,11 @@
+{
+  "name": "@tbhb-dev/site",
+  "version": "0.0.0",
+  "private": true,
+  "type": "module",
+  "description": "The design.tbhb.dev landing and documentation site.",
+  "license": "Apache-2.0",
+  "dependencies": {
+    "astro": "7.4.5"
+  }
+}

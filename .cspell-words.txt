@@ -1,16 +1,19 @@
 akia
 ascm
+astrojs
 awrel
 bazelignore
 bazelisk
 bazelrc
 bazelversion
+bindir
 buildcop
 buildifier
 bxox
 cgnat
 complexipy
 depcruise
+filegroup
 frontmatter
 genrule
 hardwrap
@@ -26,6 +29,7 @@ mcpjson
 nobuild
 nocache
 noexperimental
+nojekyll
 noremote
 nosandbox
 onepassword
@@ -35,6 +39,9 @@ pycache
 pyproject
 pytest
 regenerable
+rlocation
+rlocationpath
+rootpaths
 rumdl
 runfile
 runfiles
@@ -42,6 +49,7 @@ rylignore
 sandboxed
 shellcheck
 shfmt
+skylib
 srcs
 starlark
 tailnet

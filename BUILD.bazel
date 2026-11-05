@@ -4,6 +4,7 @@
 load("@bazel_env.bzl", "bazel_env")
 load("@bazelrc-preset.bzl", "bazelrc_preset")
 load("@buildifier_prebuilt//:rules.bzl", "buildifier", "buildifier_test")
+load("@npm//:defs.bzl", "npm_link_all_packages")
 load("@tbhb_rules//format:defs.bzl", "format", "format_test")
 load(
     "@tbhb_rules//lint:defs.bzl",
@@ -41,6 +42,10 @@ repo_files(
         "mise.local.toml",
     ],
 )
+
+# The workspace's npm store. rules_js keeps every package of the lock here,
+# and each package's own npm_link_all_packages links from it.
+npm_link_all_packages(name = "node_modules")
 
 # Generates preset.bazelrc, which .bazelrc imports. The content depends on the
 # Bazel version that runs the generator; the committed copy matches
@@ -99,7 +104,10 @@ repo_layout_test(
         ".github",
         ".vale",
         "LICENSES",
+        "dev",
         "packages",
+        "pages",
+        "site",
     ],
 )
 

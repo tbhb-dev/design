@@ -1,0 +1,70 @@
+# SPDX-License-Identifier: Apache-2.0
+# Copyright Tony Burns
+
+---
+# Publishes design.tbhb.dev. Every pull request builds the site, so a
+# change that breaks the build fails before it merges; a push to main also
+# deploys the build to GitHub Pages. Bazel assembles the artifact
+# (//pages), so the published site is exactly what `bazel build //pages`
+# writes.
+name: pages
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+env:
+  MISE_LOCKED: "1"
+
+# One deploy at a time, and a newer push to main never waits behind an
+# older one; pull requests cancel their own stale runs.
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: ${{ github.event_name == 'pull_request' }}
+
+jobs:
+  build:
+    name: build
+    runs-on: ubuntu-26.04
+    timeout-minutes: 30
+    steps:
+      - name: Checkout
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1  # v7.0.1
+        with:
+          persist-credentials: false
+
+      - name: Set up Bazel for CI
+        uses: tbhb-dev/rules/.github/actions/setup-bazel-ci@3ac3cc3b41d2c66a37cc408e039ae26f7eaa3ef6  # main
+        with:
+          disk-cache: ${{ github.workflow }}-ubuntu-26.04
+          cache-save: ${{ github.event_name != 'pull_request' }}
+
+      - name: Build the site
+        run: bazelisk build --config=ci //pages
+
+      - name: Upload the Pages artifact
+        uses: actions/upload-pages-artifact@fc324d3547104276b827a68afc52ff2a11cc49c9  # v5.0.0
+        with:
+          path: .bazel-bin/pages/pages
+
+  deploy:
+    name: deploy
+    if: github.event_name != 'pull_request' && github.ref == 'refs/heads/main'
+    needs: [build]
+    runs-on: ubuntu-26.04
+    timeout-minutes: 10
+    permissions:
+      pages: write  # deploy-pages publishes the artifact to Pages
+      id-token: write  # deploy-pages proves the run's identity with an OIDC token
+    environment:
+      name: github-pages
+      url: ${{ steps.deploy.outputs.page_url }}
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deploy
+        uses: actions/deploy-pages@368f82528645a54fb793d4d04e342629a3f51346  # v5.0.1

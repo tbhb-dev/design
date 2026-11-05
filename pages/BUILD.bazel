@@ -1,0 +1,42 @@
+# SPDX-License-Identifier: Apache-2.0
+# Copyright Tony Burns
+
+load("@aspect_rules_js//js:defs.bzl", "js_test")
+load("@bazel_lib//lib:copy_to_directory.bzl", "copy_to_directory")
+load("@bazel_skylib//rules:write_file.bzl", "write_file")
+load("@tbhb_rules//repo:defs.bzl", "repo_files")
+
+# This package's files, chained into //:repo_files for the whole-tree checks.
+repo_files()
+
+# GitHub Pages runs Jekyll over an artifact without this file, and Jekyll
+# drops the directories whose names start with an underscore, such as
+# Astro's _astro/.
+write_file(
+    name = "nojekyll",
+    out = ".nojekyll",
+    content = [],
+)
+
+# The whole of design.tbhb.dev as GitHub Pages serves it: the Astro site at
+# the root, beside .nojekyll. `bazel build //pages` writes it, and the pages
+# workflow uploads it.
+copy_to_directory(
+    name = "pages",
+    srcs = [
+        ":nojekyll",
+        "//site:dist",
+    ],
+    replace_prefixes = {
+        "pages/.nojekyll": ".nojekyll",
+        "site/dist": "",
+    },
+)
+
+# The artifact holds the site's index page and .nojekyll at its root.
+js_test(
+    name = "pages_test",
+    args = ["$(rootpath :pages)"],
+    data = [":pages"],
+    entry_point = "pages_test.mjs",
+)

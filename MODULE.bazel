@@ -11,7 +11,7 @@ module(name = "tbhb_dev_design")
 bazel_dep(name = "tbhb_rules", version = "0.0.0", dev_dependency = True)
 git_override(
     module_name = "tbhb_rules",
-    commit = "4518bc2ba695ad003bd18bb52f9c8dde463af19a",
+    commit = "3ac3cc3b41d2c66a37cc408e039ae26f7eaa3ef6",
     remote = "https://github.com/tbhb-dev/rules.git",
 )
 
@@ -23,15 +23,31 @@ git_override(
 bazel_dep(name = "tbhb_rules_typescript", version = "0.0.0", dev_dependency = True)
 git_override(
     module_name = "tbhb_rules_typescript",
-    commit = "4518bc2ba695ad003bd18bb52f9c8dde463af19a",
+    commit = "3ac3cc3b41d2c66a37cc408e039ae26f7eaa3ef6",
     remote = "https://github.com/tbhb-dev/rules.git",
     strip_prefix = "typescript",
+)
+
+# The Astro checks (astro build, astro check) and astro_dev, a nested module
+# of the same repository with @astrojs/check pinned; astro itself comes from
+# site/package.json. Same pin as tbhb_rules; locally,
+# `common --override_module=tbhb_rules_astro=../rules/astro`.
+bazel_dep(name = "tbhb_rules_astro", version = "0.0.0", dev_dependency = True)
+git_override(
+    module_name = "tbhb_rules_astro",
+    commit = "3ac3cc3b41d2c66a37cc408e039ae26f7eaa3ef6",
+    remote = "https://github.com/tbhb-dev/rules.git",
+    strip_prefix = "astro",
 )
 
 # The workspace's npm packages (package.json, pnpm-workspace.yaml and each
 # packages/*/package.json, locked in pnpm-lock.yaml), every one pinned by
 # integrity hash, with no lifecycle script allowed to run.
 bazel_dep(name = "aspect_rules_js", version = "3.5.2")
+
+# copy_to_directory, which assembles the Pages artifact (pages/BUILD.bazel).
+bazel_dep(name = "bazel_lib", version = "3.7.0")
+bazel_dep(name = "bazel_skylib", version = "1.9.2")
 
 npm = use_extension("@aspect_rules_js//npm:extensions.bzl", "npm")
 npm.npm_translate_lock(
@@ -40,6 +56,7 @@ npm.npm_translate_lock(
         "//:package.json",
         "//:pnpm-workspace.yaml",
         "//packages/tokens:package.json",
+        "//site:package.json",
     ],
     lifecycle_hooks = {"*": []},
     pnpm_lock = "//:pnpm-lock.yaml",
