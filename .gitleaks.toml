@@ -40,7 +40,7 @@ keywords = ["."]
 
 [[rules.allowlists]]
 description = "Generated lockfiles"
-paths = ['''^(MODULE\.bazel|uv|mise)\.lock$''']
+paths = ['''^(MODULE\.bazel|mise)\.lock$''']
 
 [[rules.allowlists]]
 description = "Non-public ranges: private, loopback, link-local, CGNAT, documentation, benchmarking, multicast and reserved"
@@ -134,7 +134,7 @@ keywords = ["token", "secret", "key", "password", "credential"]
 
 [[rules.allowlists]]
 description = "Generated lockfiles: package names and digests, not secrets"
-paths = ['''^(MODULE\.bazel|uv|mise)\.lock$''']
+paths = ['''^(MODULE\.bazel|mise)\.lock$''']
 
 [[rules]]
 id = "onepassword-item-id"
@@ -158,7 +158,7 @@ regexTarget = "line"
 regexes = ['''"AWREL_CONNECT_TOKEN_FILE": "\$\{HOME\}/\.config/awrel/prd-connect-token"''']
 
 [[rules.allowlists]]
-description = "tools/interim/agent_identity.py, a verbatim copy of ascm's script, falls back to Codex's default home directory, which names no credential"
-paths = ['''^tools/interim/agent_identity\.py$''']
+description = "The history scan's one hit in ascm's agent identity script, since removed: its fallback to Codex's default home directory names no credential"
+commits = ["2eb40fa8fe520bfedfc2925ac8ca3f4818a121b8"]
 regexTarget = "line"
 regexes = ['''Path\("~/\.codex"\)\.expanduser\(\)''']

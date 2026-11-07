@@ -12,10 +12,7 @@
     "mise.lock",
     "**/node_modules/**/*",
     "pnpm-lock.yaml",
-    "tmp/**/*",
-    // A verbatim copy of ascm's scripts, linted at the source in ascm.
-    "tools/interim/**/*",
-    "uv.lock"
+    "tmp/**/*"
   ],
   "dictionaryDefinitions": [
     {

@@ -95,15 +95,11 @@ buildifier_test(
 )
 
 # The repository's shape. Only these top-level directories may exist; add a
-# new one here in the change that first uses it. tools/ holds only the
-# interim/ copy of ascm's PR and attribution scripts.
+# new one here in the change that first uses it.
 repo_layout_test(
     name = "repo_layout_test",
     srcs = [":repo_files"],
-    allowed_subdirs = {"tools": ["interim"]},
-    scripts = {"tools": "pep723"},
     top_level_dirs = [
-        ".agents",
         ".claude",
         ".codex",
         ".github",
@@ -114,7 +110,6 @@ repo_layout_test(
         "pages",
         "site",
         "storybook",
-        "tools",
     ],
 )
 
@@ -147,9 +142,6 @@ tombi_test(
     name = "tombi_test",
     srcs = [":repo_files"],
     config = "tombi.toml",
-    schemas = {
-        "https://www.schemastore.org/uv.json": "@schemastore_uv//file",
-    },
 )
 
 rumdl_test(
@@ -234,11 +226,9 @@ FORMATTERS = [
 ]
 
 # Test fixtures hold deliberately malformed files, which no formatter may
-# fix. tools/interim/ is a verbatim copy of ascm's scripts, formatted at the
-# source.
+# fix.
 FORMAT_EXCLUDE = [
     "*/testdata/*",
-    "tools/interim/*",
 ]
 
 format(
@@ -303,7 +293,7 @@ bazel_env(
         "actionlint": "@tbhb_rules_actionlint//:actionlint",
         "buildifier": "@buildifier_prebuilt//:buildifier",
         "cog": "@tbhb_rules_cog//:cog",
-        # The cspell_test pin, for the interim PR script's draft lint.
+        # The cspell_test pin, for `tbhbdev alpha pr`'s draft lint.
         "cspell": "@tbhb_rules//lint/private/cspell",
         "editorconfig-checker": "@tbhb_rules_editorconfig_checker//:editorconfig-checker",
         "gitleaks": "@tbhb_rules_gitleaks//:gitleaks",
