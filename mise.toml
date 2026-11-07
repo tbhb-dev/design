@@ -14,6 +14,7 @@
 # `mise lock --platform` only adds platforms. To drop one, delete mise.lock
 # first.
 lockfile = true
+lockfile_platforms = ["linux-x64", "linux-arm64", "macos-arm64"]
 # Never write mise.lock as a side effect. `mise install` and `mise upgrade`
 # read the lock and fail on a pin, or a platform, it doesn't cover.
 # `mise lock` (above, or Renovate's `mise lock <tool>` after a pin bump) is
