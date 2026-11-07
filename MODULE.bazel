@@ -89,6 +89,8 @@ npm.npm_translate_lock(
         "//:package.json",
         "//:pnpm-workspace.yaml",
         "//packages/tokens:package.json",
+        "//packages/tokens-css:package.json",
+        "//packages/tokens-js:package.json",
         "//site:package.json",
         "//storybook/astro:package.json",
         "//storybook/html:package.json",

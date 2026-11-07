@@ -6,10 +6,7 @@
 // buttons with data-scale and data-step ("9" or "a9"); one listener on the
 // document serves every story, whatever renders it.
 
-import palettes from "@tbhb-dev/tokens/palettes.json";
-
-type Color = { components: number[]; alpha?: number; hex: string; p3: number[] };
-type Palettes = Record<string, Record<string, Record<string, Color>>>;
+import palettes, { type Color } from "@tbhb-dev/tokens-js/palettes.js";
 
 const USES = [
   "Backgrounds",
@@ -93,10 +90,9 @@ function values(title: string, variable: string, color: Color) {
 function open(swatch: HTMLElement) {
   const { scale = "", step = "" } = swatch.dataset;
   const n = Number(step.replace("a", ""));
-  const mode =
-    swatch.closest<HTMLElement>("[data-mode]")?.dataset.mode ??
-    (matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light");
-  const scales = (palettes as Palettes)[mode];
+  const mode = (swatch.closest<HTMLElement>("[data-mode]")?.dataset.mode ??
+    (matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light")) as keyof typeof palettes;
+  const scales = palettes[mode];
   const solid = `--tbhb-palette-${scale}-${n}`;
   const alpha = `--tbhb-palette-${scale}-a${n}`;
 

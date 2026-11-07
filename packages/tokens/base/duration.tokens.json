@@ -1,0 +1,23 @@
+{
+  "duration": {
+    "$type": "duration",
+    "fast": {
+      "$value": {
+        "value": 100,
+        "unit": "ms"
+      }
+    },
+    "normal": {
+      "$value": {
+        "value": 200,
+        "unit": "ms"
+      }
+    },
+    "slow": {
+      "$value": {
+        "value": 300,
+        "unit": "ms"
+      }
+    }
+  }
+}

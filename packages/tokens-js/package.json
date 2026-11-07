@@ -1,0 +1,14 @@
+{
+  "name": "@tbhb-dev/tokens-js",
+  "version": "0.0.0",
+  "private": true,
+  "type": "module",
+  "description": "The tbhb.dev design tokens as JavaScript modules.",
+  "license": "Apache-2.0",
+  "exports": {
+    "./palettes.js": {
+      "types": "./palettes.d.ts",
+      "default": "./palettes.js"
+    }
+  }
+}

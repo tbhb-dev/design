@@ -1,0 +1,41 @@
+{
+  "radius": {
+    "$type": "dimension",
+    "1": {
+      "$value": {
+        "value": 3,
+        "unit": "px"
+      }
+    },
+    "2": {
+      "$value": {
+        "value": 4,
+        "unit": "px"
+      }
+    },
+    "3": {
+      "$value": {
+        "value": 6,
+        "unit": "px"
+      }
+    },
+    "4": {
+      "$value": {
+        "value": 8,
+        "unit": "px"
+      }
+    },
+    "5": {
+      "$value": {
+        "value": 12,
+        "unit": "px"
+      }
+    },
+    "full": {
+      "$value": {
+        "value": 9999,
+        "unit": "px"
+      }
+    }
+  }
+}

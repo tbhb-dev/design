@@ -6,6 +6,7 @@
   "description": "The HTML Storybook, served at design.tbhb.dev/storybook/html/.",
   "license": "Apache-2.0",
   "dependencies": {
-    "@tbhb-dev/tokens": "workspace:*"
+    "@tbhb-dev/tokens-css": "workspace:*",
+    "@tbhb-dev/tokens-js": "workspace:*"
   }
 }

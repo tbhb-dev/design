@@ -1,0 +1,41 @@
+# SPDX-License-Identifier: Apache-2.0
+# Copyright Tony Burns
+
+load("@aspect_rules_js//js:defs.bzl", "js_binary", "js_run_binary")
+load("@aspect_rules_js//npm:defs.bzl", "npm_package")
+load("@tbhb_rules//repo:defs.bzl", "repo_files")
+
+# This package's files, chained into //:repo_files for the whole-tree checks.
+repo_files()
+
+# npm_translate_lock in MODULE.bazel reads it.
+exports_files(["package.json"])
+
+js_binary(
+    name = "palettes_js_tool",
+    entry_point = "palettes_js.mjs",
+)
+
+# Every palette value in one module, for the Storybooks' Colors page.
+js_run_binary(
+    name = "palettes_js",
+    srcs = ["//packages/tokens:palette_files"],
+    outs = ["palettes.js"],
+    args = [
+        package_name() + "/palettes.js",
+        "$(rootpaths //packages/tokens:palette_files)",
+    ],
+    tool = ":palettes_js_tool",
+)
+
+# The package as the workspace links it: a dependency on @tbhb-dev/tokens-js
+# gets the palettes' values as `@tbhb-dev/tokens-js/palettes.js`.
+npm_package(
+    name = "pkg",
+    srcs = [
+        "package.json",
+        "palettes.d.ts",
+        ":palettes_js",
+    ],
+    visibility = ["//visibility:public"],
+)

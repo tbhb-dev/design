@@ -1,7 +1,7 @@
 /* SPDX-License-Identifier: Apache-2.0 */
 /* Copyright Tony Burns */
 
-@import "@tbhb-dev/tokens/all.css";
+@import "@tbhb-dev/tokens-css/all.css";
 
 body {
   background: var(--tbhb-color-background);

@@ -6,7 +6,8 @@
   "description": "The Web Components (Lit) Storybook, served at design.tbhb.dev/storybook/web-components/.",
   "license": "Apache-2.0",
   "dependencies": {
-    "@tbhb-dev/tokens": "workspace:*",
+    "@tbhb-dev/tokens-css": "workspace:*",
+    "@tbhb-dev/tokens-js": "workspace:*",
     "lit": "3.3.3"
   }
 }

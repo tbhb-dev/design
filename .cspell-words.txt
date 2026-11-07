@@ -16,6 +16,7 @@ chdir
 complexipy
 Consolas
 depcruise
+DTCG
 endswith
 expanduser
 filegroup

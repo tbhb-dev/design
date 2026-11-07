@@ -1,0 +1,46 @@
+# SPDX-License-Identifier: Apache-2.0
+# Copyright Tony Burns
+
+load("@aspect_rules_js//npm:defs.bzl", "npm_package")
+load("@tbhb_rules//repo:defs.bzl", "repo_files")
+load("@tbhb_rules_tokens//:defs.bzl", "tokens_css")
+
+# This package's files, chained into //:repo_files for the whole-tree checks.
+repo_files()
+
+# npm_translate_lock in MODULE.bazel reads it.
+exports_files(["package.json"])
+
+# The stylesheet: the default theme at :root, each theme at [data-theme],
+# dark from prefers-color-scheme unless [data-mode] sets it. Every custom
+# property is --tbhb-*, so it never collides with a page's own.
+tokens_css(
+    name = "css",
+    srcs = ["//packages/tokens"],
+    out = "tokens.css",
+    prefix = "tbhb",
+    resolver = "//packages/tokens:tokens.resolver.json",
+)
+
+# Every palette scale, solid and alpha, whether or not a theme uses it, for
+# pages that show the palettes themselves, such as the Storybooks' Colors.
+tokens_css(
+    name = "all_css",
+    srcs = ["//packages/tokens"],
+    out = "all.css",
+    palette = "",
+    prefix = "tbhb",
+    resolver = "//packages/tokens:tokens.resolver.json",
+)
+
+# The package as the workspace links it: a dependency on @tbhb-dev/tokens-css
+# gets `@tbhb-dev/tokens-css/tokens.css` and `@tbhb-dev/tokens-css/all.css`.
+npm_package(
+    name = "pkg",
+    srcs = [
+        "package.json",
+        ":all_css",
+        ":css",
+    ],
+    visibility = ["//visibility:public"],
+)

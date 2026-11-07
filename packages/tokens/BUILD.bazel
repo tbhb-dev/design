@@ -1,20 +1,32 @@
 # SPDX-License-Identifier: Apache-2.0
 # Copyright Tony Burns
 
-load("@aspect_rules_js//js:defs.bzl", "js_binary", "js_run_binary")
 load("@aspect_rules_js//npm:defs.bzl", "npm_package")
+load("@bazel_lib//lib:copy_to_bin.bzl", "copy_to_bin")
 load("@bazel_lib//lib:write_source_files.bzl", "write_source_files")
 load("@tbhb_rules//repo:defs.bzl", "repo_files")
-load("@tbhb_rules_tokens//:defs.bzl", "radix_palette_files", "radix_palettes", "tokens_css", "tokens_test")
+load("@tbhb_rules_tokens//:defs.bzl", "radix_palette_files", "radix_palettes", "tokens_test")
 
 # This package's files, chained into //:repo_files for the whole-tree checks.
 repo_files()
 
-# npm_translate_lock in MODULE.bazel reads it.
-exports_files(["package.json"])
+# npm_translate_lock in MODULE.bazel reads package.json, and the
+# tokens-* packages build from the resolver.
+exports_files([
+    "package.json",
+    "tokens.resolver.json",
+])
+
+# The DTCG token files, in three layers:
+# - base/: values with no meaning yet, the palettes among them;
+# - semantic/: themes that map roles onto palettes, and colors named for
+#   what they do;
+# - component/: values for one component, over the semantic tokens.
+# Only DTCG documents live here; the tokens-* packages transform them.
 
 # The palette library: Radix Colors scales, generated into palettes/ with
-# their MIT sidecars. `bazel run //packages/tokens:palettes` rewrites them,
+# their MIT sidecars, in base/palettes/. `bazel run //packages/tokens:palettes`
+# rewrites them,
 # and palettes_test fails when a committed file differs. A theme maps roles
 # onto these scales; tokens_css leaves out any scale no theme uses.
 SCALES = [
@@ -58,10 +70,24 @@ radix_palettes(
 
 write_source_files(
     name = "palettes",
-    files = {"palettes/" + f: ":radix/" + f for f in radix_palette_files(SCALES)},
+    files = {"base/palettes/" + f: ":radix/" + f for f in radix_palette_files(SCALES)},
 )
 
 TOKENS = glob(["**/*.tokens.json"])
+
+filegroup(
+    name = "tokens",
+    srcs = TOKENS,
+    visibility = ["//packages/tokens-css:__pkg__"],
+)
+
+# The palette files in the output tree, for tools that run there, such as
+# tokens-js's palettes.js.
+copy_to_bin(
+    name = "palette_files",
+    srcs = ["base/palettes/" + f for f in radix_palette_files(SCALES) if f.endswith(".json")],
+    visibility = ["//packages/tokens-js:__pkg__"],
+)
 
 # Every theme × mode resolves, and text meets WCAG AA on the surfaces it
 # sits on, in each of them.
@@ -113,56 +139,14 @@ tokens_test(
     resolver = "tokens.resolver.json",
 )
 
-# The stylesheet: the default theme at :root, each theme at [data-theme],
-# dark from prefers-color-scheme unless [data-mode] sets it. Every custom
-# property is --tbhb-*, so it never collides with a page's own.
-tokens_css(
-    name = "css",
-    srcs = TOKENS,
-    out = "tokens.css",
-    prefix = "tbhb",
-    resolver = "tokens.resolver.json",
-    visibility = ["//visibility:public"],
-)
-
-# Every palette scale, solid and alpha, whether or not a theme uses it, for
-# pages that show the palettes themselves, such as the Storybooks' Colors.
-tokens_css(
-    name = "all_css",
-    srcs = TOKENS,
-    out = "all.css",
-    palette = "",
-    prefix = "tbhb",
-    resolver = "tokens.resolver.json",
-    visibility = ["//visibility:public"],
-)
-
-# Every palette value in one document, for the Storybooks' Colors page.
-js_binary(
-    name = "palettes_json_tool",
-    entry_point = "palettes_json.mjs",
-)
-
-js_run_binary(
-    name = "palettes_json",
-    srcs = ["palettes/" + f for f in radix_palette_files(SCALES) if f.endswith(".json")],
-    outs = ["palettes.json"],
-    args = ["palettes.json"] + ["palettes/" + f for f in radix_palette_files(SCALES) if f.endswith(".json")],
-    chdir = package_name(),
-    tool = ":palettes_json_tool",
-)
-
-# The package as the workspace links it: a dependency on @tbhb-dev/tokens
-# gets the built stylesheets as `@tbhb-dev/tokens/tokens.css` and
-# `@tbhb-dev/tokens/all.css`, and the palettes' values as
-# `@tbhb-dev/tokens/palettes.json`.
+# The package as the workspace links it: the DTCG documents, by their paths
+# here, such as `@tbhb-dev/tokens/tokens.resolver.json`.
 npm_package(
     name = "pkg",
     srcs = [
         "package.json",
-        ":all_css",
-        ":css",
-        ":palettes_json",
-    ],
+        "tokens.resolver.json",
+        ":tokens",
+    ] + glob(["base/palettes/*.license"]),
     visibility = ["//visibility:public"],
 )
