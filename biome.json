@@ -1,4 +1,15 @@
 {
+  "files": {
+    "includes": [
+      "**/*.ts",
+      "**/*.tsx",
+      "**/*.js",
+      "**/*.mjs",
+      "**/*.cjs",
+      "**/*.astro",
+      "**/*.css"
+    ]
+  },
   "linter": {
     "rules": {
       "preset": "recommended"
@@ -9,7 +20,9 @@
   },
   "overrides": [
     {
-      "includes": ["**/*.astro"],
+      "includes": [
+        "**/*.astro"
+      ],
       "linter": {
         "rules": {
           "correctness": {

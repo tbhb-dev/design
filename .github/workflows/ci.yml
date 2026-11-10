@@ -42,8 +42,7 @@ jobs:
         os: [ubuntu-26.04, ubuntu-26.04-arm, macos-26]
     steps:
       - name: Checkout
-        # v7.0.1
-        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1  # v7.0.1
         with:
           persist-credentials: false
 
@@ -51,8 +50,7 @@ jobs:
       # complexipy's source wheel on Linux arm64, and fetches the targets
       # with retries.
       - name: Set up Bazel for CI
-        # main
-        uses: tbhb-dev/rules/.github/actions/setup-bazel-ci@4fd6cbee0eed3042790e7487cf41edb7a79c5670
+        uses: tbhb-dev/rules/.github/actions/setup-bazel-ci@4fd6cbee0eed3042790e7487cf41edb7a79c5670  # main
         with:
           disk-cache: ${{ github.workflow }}-${{ matrix.os }}
           cache-save: ${{ github.event_name != 'pull_request' }}
@@ -67,8 +65,7 @@ jobs:
       # be read.
       - name: Keep the test logs
         if: failure()
-        # v7.0.2
-        uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9
+        uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9  # v7.0.2
         with:
           name: testlogs-${{ matrix.os }}
           path: |
@@ -83,8 +80,7 @@ jobs:
     name: repo
     permissions:
       contents: read
-    # main
-    uses: tbhb-dev/rules/.github/workflows/repo-checks.yml@4fd6cbee0eed3042790e7487cf41edb7a79c5670
+    uses: tbhb-dev/rules/.github/workflows/repo-checks.yml@4fd6cbee0eed3042790e7487cf41edb7a79c5670  # main
     with:
       timeout-minutes: 10
       pip-audit-target: ""
@@ -101,7 +97,6 @@ jobs:
     timeout-minutes: 5
     steps:
       - name: Fail if any needed job did not succeed
-        # main
-        uses: tbhb-dev/rules/.github/actions/ci-conclusion@4fd6cbee0eed3042790e7487cf41edb7a79c5670
+        uses: tbhb-dev/rules/.github/actions/ci-conclusion@4fd6cbee0eed3042790e7487cf41edb7a79c5670  # main
         with:
           needs: ${{ toJSON(needs) }}

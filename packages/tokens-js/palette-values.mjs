@@ -30,6 +30,7 @@ export function p3([l, c, h]) {
       ),
     );
     const encoded =
+      // Stryker disable next-line EqualityOperator: equivalent; at exactly 0.0031308 both branches round to 0.040.
       linear <= 0.0031308
         ? 12.92 * linear
         : 1.055 * linear ** (1 / 2.4) - 0.055;

@@ -34,14 +34,12 @@ jobs:
     timeout-minutes: 30
     steps:
       - name: Checkout
-        # v7.0.1
-        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1  # v7.0.1
         with:
           persist-credentials: false
 
       - name: Set up Bazel for CI
-        # main
-        uses: tbhb-dev/rules/.github/actions/setup-bazel-ci@4fd6cbee0eed3042790e7487cf41edb7a79c5670
+        uses: tbhb-dev/rules/.github/actions/setup-bazel-ci@4fd6cbee0eed3042790e7487cf41edb7a79c5670  # main
         with:
           disk-cache: ${{ github.workflow }}-ubuntu-26.04
           cache-save: ${{ github.event_name != 'pull_request' }}
@@ -56,8 +54,7 @@ jobs:
         run: test -f .bazel-bin/pages/pages/index.html
 
       - name: Upload the Pages artifact
-        # v5.0.0
-        uses: actions/upload-pages-artifact@fc324d3547104276b827a68afc52ff2a11cc49c9
+        uses: actions/upload-pages-artifact@fc324d3547104276b827a68afc52ff2a11cc49c9  # v5.0.0
         with:
           path: .bazel-bin/pages/pages
 
@@ -68,13 +65,12 @@ jobs:
     runs-on: ubuntu-26.04
     timeout-minutes: 10
     permissions:
-      pages: write # deploy-pages publishes the artifact to Pages
-      id-token: write # deploy-pages proves the run's identity with an OIDC token
+      pages: write  # deploy-pages publishes the artifact to Pages
+      id-token: write  # deploy-pages proves the run's identity with an OIDC token
     environment:
       name: github-pages
       url: ${{ steps.deploy.outputs.page_url }}
     steps:
       - name: Deploy to GitHub Pages
         id: deploy
-        # v5.0.1
-        uses: actions/deploy-pages@368f82528645a54fb793d4d04e342629a3f51346
+        uses: actions/deploy-pages@368f82528645a54fb793d4d04e342629a3f51346  # v5.0.1

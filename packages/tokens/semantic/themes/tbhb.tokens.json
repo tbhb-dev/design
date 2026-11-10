@@ -85,7 +85,11 @@
       "contrast": {
         "$value": {
           "colorSpace": "oklch",
-          "components": [1, 0, 0],
+          "components": [
+            1,
+            0,
+            0
+          ],
           "hex": "#ffffff"
         }
       }
@@ -136,7 +140,11 @@
       "contrast": {
         "$value": {
           "colorSpace": "oklch",
-          "components": [0.2431, 0.0076, 95.37],
+          "components": [
+            0.2431,
+            0.0076,
+            95.37
+          ],
           "hex": "#21201c"
         }
       }
@@ -187,7 +195,11 @@
       "contrast": {
         "$value": {
           "colorSpace": "oklch",
-          "components": [0.2431, 0.0076, 95.37],
+          "components": [
+            0.2431,
+            0.0076,
+            95.37
+          ],
           "hex": "#21201c"
         }
       }
@@ -285,7 +297,11 @@
       "contrast": {
         "$value": {
           "colorSpace": "oklch",
-          "components": [0.2431, 0.0076, 95.37],
+          "components": [
+            0.2431,
+            0.0076,
+            95.37
+          ],
           "hex": "#21201c"
         }
       }

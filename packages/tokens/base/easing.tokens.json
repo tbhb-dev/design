@@ -2,10 +2,20 @@
   "easing": {
     "$type": "cubicBezier",
     "standard": {
-      "$value": [0.2, 0, 0, 1]
+      "$value": [
+        0.2,
+        0,
+        0,
+        1
+      ]
     },
     "out": {
-      "$value": [0, 0, 0.2, 1]
+      "$value": [
+        0,
+        0,
+        0.2,
+        1
+      ]
     }
   }
 }
