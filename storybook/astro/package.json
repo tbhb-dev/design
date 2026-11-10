@@ -8,7 +8,7 @@
   "dependencies": {
     "@tbhb-dev/tokens-css": "workspace:*",
     "@tbhb-dev/tokens-js": "workspace:*",
-    "astro": "7.4.5",
+    "astro": "7.4.6",
     "@tbhb-dev/components": "workspace:*"
   },
   "devDependencies": {
