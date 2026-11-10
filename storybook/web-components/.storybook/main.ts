@@ -11,7 +11,11 @@ export default {
     ...config,
     optimizeDeps: {
       ...config.optimizeDeps,
-      exclude: [...(config.optimizeDeps?.exclude ?? []), "@tbhb-dev/tokens-js"],
+      exclude: [
+        ...(config.optimizeDeps?.exclude ?? []),
+        "@tbhb-dev/tokens-js",
+        "@tbhb-dev/components",
+      ],
     },
   }),
 };

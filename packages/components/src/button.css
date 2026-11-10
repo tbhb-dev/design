@@ -1,0 +1,56 @@
+/* SPDX-License-Identifier: Apache-2.0 */
+/* Copyright Tony Burns */
+
+:host {
+  display: inline-block;
+}
+
+button {
+  box-sizing: border-box;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: var(--tbhb-space-7);
+  padding: var(--tbhb-space-2) var(--tbhb-space-4);
+  border: 1px solid var(--tbhb-color-accent-solid);
+  border-radius: var(--tbhb-radius-2);
+  background: var(--tbhb-color-accent-solid);
+  color: var(--tbhb-color-accent-contrast);
+  font-family: var(--tbhb-font-family-sans);
+  font-size: var(--tbhb-font-size-3);
+  font-weight: var(--tbhb-font-weight-medium);
+  cursor: pointer;
+}
+
+button:hover:enabled {
+  background: var(--tbhb-color-accent-solid-hover);
+}
+
+:host([variant="soft"]) button {
+  background: var(--tbhb-color-accent-subtle);
+  border-color: var(--tbhb-color-accent-text);
+  color: var(--tbhb-color-accent-text);
+}
+
+:host([variant="outline"]) button {
+  background: var(--tbhb-color-background);
+  border-color: var(--tbhb-color-accent-text);
+  color: var(--tbhb-color-accent-text);
+}
+
+:host([variant="soft"]) button:hover:enabled,
+:host([variant="outline"]) button:hover:enabled {
+  background: var(--tbhb-color-accent-subtle);
+}
+
+button:focus-visible {
+  outline: var(--tbhb-space-1) solid var(--tbhb-color-accent-text);
+  outline-offset: var(--tbhb-space-1);
+}
+
+:host button:disabled {
+  background: var(--tbhb-color-element);
+  border-color: var(--tbhb-color-border-strong);
+  color: var(--tbhb-color-text-muted);
+  cursor: not-allowed;
+}

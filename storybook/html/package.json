@@ -7,7 +7,8 @@
   "license": "Apache-2.0",
   "dependencies": {
     "@tbhb-dev/tokens-css": "workspace:*",
-    "@tbhb-dev/tokens-js": "workspace:*"
+    "@tbhb-dev/tokens-js": "workspace:*",
+    "@tbhb-dev/components": "workspace:*"
   },
   "devDependencies": {
     "vite": "8.3.5"

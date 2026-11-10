@@ -19,6 +19,8 @@ depcruise
 DTCG
 endswith
 expanduser
+execroot
+fieldsets
 filegroup
 frontmatter
 genrule
@@ -70,8 +72,8 @@ stylesheet
 subdirs
 tailnet
 tbhb
-tbhbdev
 tbhbdesign
+tbhbdev
 testdata
 tfstate
 tombi
@@ -80,6 +82,7 @@ tricolon
 tskey
 uncomparables
 unmatch
+unstub
 venv
 vitest
 WCAG

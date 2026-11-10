@@ -88,6 +88,7 @@ npm.npm_translate_lock(
     data = [
         "//:package.json",
         "//:pnpm-workspace.yaml",
+        "//packages/components:package.json",
         "//packages/tokens:package.json",
         "//packages/tokens-css:package.json",
         "//packages/tokens-js:package.json",

@@ -5,6 +5,7 @@ import { defineConfig } from "vitest/config";
 
 export default defineConfig({
   test: {
+    css: true,
     include: ["**/*.test.{ts,mjs}", "**/.storybook/*.test.ts"],
     coverage: {
       provider: "v8",
@@ -16,6 +17,7 @@ export default defineConfig({
         "packages/tokens-js/colors_js.mjs",
         "packages/tokens-js/palettes_js.mjs",
         "dev/routing.mjs",
+        "packages/components/src/button.ts",
       ],
     },
   },

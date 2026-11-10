@@ -15,6 +15,7 @@ export default {
     "packages/tokens-js/colors_js.mjs",
     "packages/tokens-js/palettes_js.mjs",
     "dev/routing.mjs",
+    "packages/components/src/button.ts",
   ],
   concurrency: 2,
   thresholds: {
