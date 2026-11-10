@@ -1,0 +1,25 @@
+---
+// SPDX-License-Identifier: Apache-2.0
+// Copyright Tony Burns
+
+interface Props {
+  variant?: "solid" | "soft" | "outline";
+  disabled?: boolean;
+  submit?: boolean;
+}
+
+const { variant = "solid", disabled = false, submit = false } = Astro.props;
+---
+
+{submit ? (
+  <form>
+    <label>Display name <input name="displayName" value="Example" required /></label>
+    <tbhb-button type="submit">Save</tbhb-button>
+  </form>
+) : (
+  <tbhb-button variant={variant} disabled={disabled}>Continue</tbhb-button>
+)}
+
+<script>
+  import "@tbhb-dev/components/button";
+</script>

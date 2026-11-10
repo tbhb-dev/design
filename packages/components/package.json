@@ -1,0 +1,12 @@
+{
+  "name": "@tbhb-dev/components",
+  "version": "0.0.0",
+  "private": true,
+  "type": "module",
+  "description": "Native web components for the tbhb.dev design system.",
+  "license": "Apache-2.0",
+  "sideEffects": true,
+  "exports": {
+    "./button": "./src/button.ts"
+  }
+}

@@ -9,7 +9,8 @@
     "@tbhb-dev/tokens-css": "workspace:*",
     "@tbhb-dev/tokens-js": "workspace:*",
     "react": "19.3.1",
-    "react-dom": "19.3.1"
+    "react-dom": "19.3.1",
+    "@tbhb-dev/components": "workspace:*"
   },
   "devDependencies": {
     "vite": "8.3.5",

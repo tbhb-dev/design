@@ -8,6 +8,8 @@ importers:
 
   .: {}
 
+  packages/components: {}
+
   packages/tokens: {}
 
   packages/tokens-css: {}
@@ -28,6 +30,9 @@ importers:
 
   storybook/astro:
     dependencies:
+      '@tbhb-dev/components':
+        specifier: workspace:*
+        version: link:../../packages/components
       '@tbhb-dev/tokens-css':
         specifier: workspace:*
         version: link:../../packages/tokens-css
@@ -44,6 +49,9 @@ importers:
 
   storybook/html:
     dependencies:
+      '@tbhb-dev/components':
+        specifier: workspace:*
+        version: link:../../packages/components
       '@tbhb-dev/tokens-css':
         specifier: workspace:*
         version: link:../../packages/tokens-css
@@ -57,6 +65,9 @@ importers:
 
   storybook/react:
     dependencies:
+      '@tbhb-dev/components':
+        specifier: workspace:*
+        version: link:../../packages/components
       '@tbhb-dev/tokens-css':
         specifier: workspace:*
         version: link:../../packages/tokens-css
@@ -79,6 +90,9 @@ importers:
 
   storybook/web-components:
     dependencies:
+      '@tbhb-dev/components':
+        specifier: workspace:*
+        version: link:../../packages/components
       '@tbhb-dev/tokens-css':
         specifier: workspace:*
         version: link:../../packages/tokens-css

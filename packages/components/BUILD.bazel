@@ -1,0 +1,21 @@
+# SPDX-License-Identifier: Apache-2.0
+# Copyright Tony Burns
+
+load("@aspect_rules_js//npm:defs.bzl", "npm_package")
+load("@tbhb_rules//repo:defs.bzl", "repo_files")
+
+repo_files()
+
+exports_files(["package.json"])
+
+npm_package(
+    name = "pkg",
+    srcs = ["package.json"] + glob(
+        [
+            "src/*.ts",
+            "src/*.css",
+        ],
+        exclude = ["src/*.test.ts"],
+    ),
+    visibility = ["//visibility:public"],
+)
