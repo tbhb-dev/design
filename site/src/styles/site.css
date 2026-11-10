@@ -1,0 +1,60 @@
+/* SPDX-License-Identifier: Apache-2.0 */
+/* Copyright Tony Burns */
+
+:root {
+  color-scheme: light dark;
+  background: var(--tbhb-color-background);
+  color: var(--tbhb-color-text);
+  font-family: system-ui, sans-serif;
+  line-height: 1.5;
+}
+
+body {
+  margin: 0;
+}
+
+main {
+  max-width: 72rem;
+  margin-inline: auto;
+  padding: 1.5rem;
+}
+
+a {
+  color: var(--tbhb-color-accent-text);
+  text-underline-offset: 0.2em;
+}
+
+a:focus-visible {
+  outline: 2px solid var(--tbhb-color-accent-text);
+  outline-offset: 3px;
+}
+
+code {
+  overflow-wrap: anywhere;
+}
+
+.swatches {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 16rem), 1fr));
+  gap: 1rem;
+  list-style: none;
+  padding: 0;
+}
+
+.swatches li {
+  display: grid;
+  gap: 0.5rem;
+  align-content: start;
+}
+
+.swatch {
+  display: block;
+  height: 3rem;
+  background: var(--swatch-color);
+  border: 1px solid var(--tbhb-color-border-strong);
+  border-radius: 0.25rem;
+}
+
+section {
+  margin-block: 2rem;
+}

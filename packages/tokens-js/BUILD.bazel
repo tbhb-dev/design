@@ -29,13 +29,33 @@ js_run_binary(
     tool = ":palettes_js_tool",
 )
 
+# Semantic color names and their source groups, for documentation consumers.
+js_binary(
+    name = "colors_js_tool",
+    data = ["color-groups.mjs"],
+    entry_point = "colors_js.mjs",
+)
+
+js_run_binary(
+    name = "colors_js",
+    srcs = ["//packages/tokens:color_file"],
+    outs = ["colors.js"],
+    args = [
+        package_name() + "/colors.js",
+        "$(rootpath //packages/tokens:color_file)",
+    ],
+    tool = ":colors_js_tool",
+)
+
 # The package as the workspace links it: a dependency on @tbhb-dev/tokens-js
-# gets the palettes' values as `@tbhb-dev/tokens-js/palettes.js`.
+# gets palette values and semantic color groups as importable modules.
 npm_package(
     name = "pkg",
     srcs = [
+        "colors.d.ts",
         "package.json",
         "palettes.d.ts",
+        ":colors_js",
         ":palettes_js",
     ],
     visibility = ["//visibility:public"],

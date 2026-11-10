@@ -1,0 +1,23 @@
+---
+// SPDX-License-Identifier: Apache-2.0
+// Copyright Tony Burns
+
+import "@tbhb-dev/tokens-css/tokens.css";
+import "../styles/site.css";
+
+interface Props {
+  title: string;
+}
+const { title } = Astro.props;
+---
+
+<html lang="en" data-theme="tbhb">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{title}</title>
+  </head>
+  <body>
+    <main><slot /></main>
+  </body>
+</html>

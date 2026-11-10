@@ -12,6 +12,8 @@ export default defineConfig({
         "storybook/*/src/palette.ts",
         "storybook/*/.storybook/swatch-values.ts",
         "packages/tokens-js/palette-values.mjs",
+        "packages/tokens-js/color-groups.mjs",
+        "packages/tokens-js/colors_js.mjs",
         "packages/tokens-js/palettes_js.mjs",
         "dev/routing.mjs",
       ],

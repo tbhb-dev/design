@@ -1,0 +1,60 @@
+---
+// SPDX-License-Identifier: Apache-2.0
+// Copyright Tony Burns
+
+import "@tbhb-dev/tokens-css/all.css";
+import groups from "@tbhb-dev/tokens-js/colors.js";
+import palettes from "@tbhb-dev/tokens-js/palettes.js";
+import Page from "../layouts/Page.astro";
+import { storybooks } from "../storybooks.ts";
+---
+
+<Page title="Tokens · tbhb.dev design system">
+  <nav aria-label="Breadcrumb"><a href="/">Design system</a></nav>
+  <h1>Tokens</h1>
+  <p>
+    The default tbhb theme follows your system’s light or dark appearance.
+    Swatch labels stay on the page background so they remain readable across colors.
+  </p>
+  <h2>Semantic colors</h2>
+  <p>Colors named for their purpose, grouped by their source paths.</p>
+  {
+    groups.map(({ name, tokens }) => (
+      <section aria-labelledby={name}>
+        <h3 id={name}>{name}</h3>
+        <ul class="swatches">
+          {tokens.map(({ name, property }) => (
+            <li>
+              <strong>{name}</strong>
+              <code>{property}</code>
+              <span class="swatch" aria-hidden="true" style={`--swatch-color: var(${property})`} />
+            </li>
+          ))}
+        </ul>
+      </section>
+    ))
+  }
+  <h2>Palette scales</h2>
+  <p>Every palette scale, with solid and alpha steps in the current appearance.</p>
+  {
+    Object.entries(palettes.light).map(([scale, steps]) => (
+      <section aria-labelledby={`palette-${scale}`}>
+        <h3 id={`palette-${scale}`}>{scale}</h3>
+        <ul aria-label={`${scale} in Storybook Colors`}>
+          {storybooks.map(({ name, path }) => (
+            <li><a href={`/storybook/${path}/?path=/story/tokens-colors--colors`}>{name} Colors</a></li>
+          ))}
+        </ul>
+        <ul class="swatches">
+          {Object.keys(steps).map((step) => (
+            <li>
+              <strong>{scale} {step}</strong>
+              <code>{`--tbhb-palette-${scale}-${step}`}</code>
+              <span class="swatch" aria-hidden="true" style={`--swatch-color: var(--tbhb-palette-${scale}-${step})`} />
+            </li>
+          ))}
+        </ul>
+      </section>
+    ))
+  }
+</Page>

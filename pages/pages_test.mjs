@@ -3,7 +3,7 @@
 
 // Checks the Pages artifact: the site's index page and .nojekyll sit at its
 // root, and each Storybook's index page under /storybook/<framework>/, where
-// GitHub Pages serves them. The site's index links to each Storybook.
+// GitHub Pages serves them. Tokens lives at /tokens/, linked from the index.
 //
 // Usage: pages_test.mjs <pages directory>
 
@@ -19,6 +19,12 @@ if (!html) {
   failures.push("index.html is missing from the artifact's root");
 } else if (!html.includes("tbhb.dev design system")) {
   failures.push("index.html doesn't hold the site's heading");
+}
+if (!existsSync(join(dir, "tokens", "index.html"))) {
+  failures.push("tokens/index.html is missing");
+}
+if (html && !html.includes('href="/tokens/"')) {
+  failures.push("index.html doesn't link to /tokens/");
 }
 for (const framework of ["astro", "html", "react", "web-components"]) {
   if (!existsSync(join(dir, "storybook", framework, "index.html"))) {
@@ -36,4 +42,6 @@ if (failures.length > 0) {
   console.error(failures.join("\n"));
   process.exit(1);
 }
-console.log("pages_test: the site, the four Storybooks and .nojekyll in place");
+console.log(
+  "pages_test: the site, Tokens, the four Storybooks and .nojekyll in place",
+);
