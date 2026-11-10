@@ -19,6 +19,7 @@ depcruise
 DTCG
 endswith
 expanduser
+execroot
 fieldsets
 filegroup
 frontmatter
