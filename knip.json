@@ -1,0 +1,22 @@
+{
+  "workspaces": {
+    ".": {
+      "entry": ["dev/proxy.mjs", "dev/dev_test.mjs", "pages/pages_test.mjs"],
+      "project": ["dev/**/*.mjs", "pages/**/*.mjs"],
+      "ignoreDependencies": ["@vitest/coverage-v8", "vitest", "typescript-eslint"],
+      "typescript": { "config": ["tsconfig.json"] },
+      "vitest": { "config": ["vitest.config.mjs"] }
+    },
+    "packages/*": {
+      "entry": ["palettes_js.mjs"],
+      "project": ["**/*.{ts,mjs}"]
+    },
+    "site": {
+      "project": ["**/*.{ts,mjs,astro}"]
+    },
+    "storybook/*": {
+      "entry": [".storybook/{main,preview}.ts", "src/**/*.stories.{ts,tsx}"],
+      "project": ["**/*.{ts,tsx,astro}", ".storybook/**/*.ts"]
+    }
+  }
+}

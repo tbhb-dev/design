@@ -26,6 +26,16 @@ load(
 )
 load("@tbhb_rules//repo:defs.bzl", "repo_files", "repo_layout_test")
 load("@tbhb_rules//testing:defs.bzl", "expect_failure_test")
+load(
+    "@tbhb_rules_typescript//:defs.bzl",
+    "biome_test",
+    "depcruise_test",
+    "eslint_test",
+    "knip_test",
+    "stryker_test",
+    "tsc_test",
+    "vitest_test",
+)
 
 # Every file of the repository, for the whole-tree checks below. Ignored
 # directories are listed in REPO.bazel; these are the gitignored files that
@@ -46,6 +56,66 @@ repo_files(
 # The workspace's npm store. rules_js keeps every package of the lock here,
 # and each package's own npm_link_all_packages links from it.
 npm_link_all_packages(name = "node_modules")
+
+# The TypeScript gates check the repository, with the workspace libraries
+# linked alongside the tools supplied by tbhb_rules_typescript.
+TYPESCRIPT_NODE_MODULES = [
+    ":node_modules",
+    "//site:node_modules",
+    "//storybook/astro:node_modules",
+    "//storybook/html:node_modules",
+    "//storybook/react:node_modules",
+    "//storybook/web-components:node_modules",
+]
+
+tsc_test(
+    name = "tsc_test",
+    srcs = [":repo_files"],
+    node_modules = TYPESCRIPT_NODE_MODULES,
+)
+
+biome_test(
+    name = "biome_test",
+    srcs = [":repo_files"],
+)
+
+eslint_test(
+    name = "eslint_test",
+    srcs = [":repo_files"],
+    node_modules = TYPESCRIPT_NODE_MODULES,
+)
+
+knip_test(
+    name = "knip_test",
+    srcs = [":repo_files"],
+    node_modules = TYPESCRIPT_NODE_MODULES,
+)
+
+depcruise_test(
+    name = "depcruise_test",
+    srcs = [":repo_files"],
+    dirs = [
+        "dev",
+        "packages",
+        "pages",
+        "site",
+        "storybook",
+    ],
+    node_modules = TYPESCRIPT_NODE_MODULES,
+)
+
+vitest_test(
+    name = "vitest_test",
+    srcs = [":repo_files"],
+    node_modules = TYPESCRIPT_NODE_MODULES,
+)
+
+stryker_test(
+    name = "stryker_test",
+    srcs = [":repo_files"],
+    node_modules = TYPESCRIPT_NODE_MODULES,
+    tags = ["cpu:2"],
+)
 
 # Generates preset.bazelrc, which .bazelrc imports. The content depends on the
 # Bazel version that runs the generator; the committed copy matches
