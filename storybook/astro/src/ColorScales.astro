@@ -1,0 +1,47 @@
+---
+// SPDX-License-Identifier: Apache-2.0
+// Copyright Tony Burns
+
+import { COLOR_SCALES, SCALES, STEPS, label, swatchName, swatchStep, variable } from "./palette.ts";
+
+const ROWS = [
+  { mode: "light", rows: [{ suffix: "", alpha: false }, { suffix: " Alpha", alpha: true }] },
+  { mode: "dark", rows: [{ suffix: " Dark", alpha: false }, { suffix: " Dark Alpha", alpha: true }] },
+];
+---
+
+<main class="tbhb-page">
+  <h1>Color scales</h1>
+  <p>{COLOR_SCALES}</p>
+  <div class="tbhb-grid">
+    <span></span>
+    {STEPS.map((step) => <span class="tbhb-step">{step}</span>)}
+  </div>
+  {
+    SCALES.map((scale) => (
+      <section>
+        <h2>{label(scale)}</h2>
+        {ROWS.map(({ mode, rows }) => (
+          <div class="tbhb-grid tbhb-mode" data-mode={mode}>
+            {rows.map(({ suffix, alpha }) => (
+              <>
+                <span class="tbhb-name">{label(scale) + suffix}</span>
+                {STEPS.map((step) => (
+                  <button
+                    type="button"
+                    class:list={["tbhb-swatch", alpha && "tbhb-alpha"]}
+                    data-scale={scale}
+                    data-step={swatchStep(step, alpha)}
+                    aria-label={swatchName(scale, step, alpha)}
+                    title={variable(scale, step, alpha)}
+                    style={`--tbhb-swatch: var(${variable(scale, step, alpha)})`}
+                  />
+                ))}
+              </>
+            ))}
+          </div>
+        ))}
+      </section>
+    ))
+  }
+</main>

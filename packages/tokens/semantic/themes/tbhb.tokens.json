@@ -1,0 +1,310 @@
+{
+  "role": {
+    "$type": "color",
+    "neutral": {
+      "1": {
+        "$value": "{palette.slate.1}"
+      },
+      "2": {
+        "$value": "{palette.slate.2}"
+      },
+      "3": {
+        "$value": "{palette.slate.3}"
+      },
+      "4": {
+        "$value": "{palette.slate.4}"
+      },
+      "5": {
+        "$value": "{palette.slate.5}"
+      },
+      "6": {
+        "$value": "{palette.slate.6}"
+      },
+      "7": {
+        "$value": "{palette.slate.7}"
+      },
+      "8": {
+        "$value": "{palette.slate.8}"
+      },
+      "9": {
+        "$value": "{palette.slate.9}"
+      },
+      "10": {
+        "$value": "{palette.slate.10}"
+      },
+      "11": {
+        "$value": "{palette.slate.11}"
+      },
+      "12": {
+        "$value": "{palette.slate.12}"
+      }
+    },
+    "accent": {
+      "1": {
+        "$value": "{palette.indigo.1}"
+      },
+      "2": {
+        "$value": "{palette.indigo.2}"
+      },
+      "3": {
+        "$value": "{palette.indigo.3}"
+      },
+      "4": {
+        "$value": "{palette.indigo.4}"
+      },
+      "5": {
+        "$value": "{palette.indigo.5}"
+      },
+      "6": {
+        "$value": "{palette.indigo.6}"
+      },
+      "7": {
+        "$value": "{palette.indigo.7}"
+      },
+      "8": {
+        "$value": "{palette.indigo.8}"
+      },
+      "9": {
+        "$value": "{palette.indigo.9}"
+      },
+      "10": {
+        "$value": "{palette.indigo.10}"
+      },
+      "11": {
+        "$value": "{palette.indigo.11}"
+      },
+      "12": {
+        "$value": "{palette.indigo.12}"
+      },
+      "solid": {
+        "$value": "{palette.indigo.9}"
+      },
+      "solid-hover": {
+        "$value": "{palette.indigo.9}"
+      },
+      "contrast": {
+        "$value": {
+          "colorSpace": "oklch",
+          "components": [
+            1,
+            0,
+            0
+          ],
+          "hex": "#ffffff"
+        }
+      }
+    },
+    "success": {
+      "1": {
+        "$value": "{palette.grass.1}"
+      },
+      "2": {
+        "$value": "{palette.grass.2}"
+      },
+      "3": {
+        "$value": "{palette.grass.3}"
+      },
+      "4": {
+        "$value": "{palette.grass.4}"
+      },
+      "5": {
+        "$value": "{palette.grass.5}"
+      },
+      "6": {
+        "$value": "{palette.grass.6}"
+      },
+      "7": {
+        "$value": "{palette.grass.7}"
+      },
+      "8": {
+        "$value": "{palette.grass.8}"
+      },
+      "9": {
+        "$value": "{palette.grass.9}"
+      },
+      "10": {
+        "$value": "{palette.grass.10}"
+      },
+      "11": {
+        "$value": "{palette.grass.11}"
+      },
+      "12": {
+        "$value": "{palette.grass.12}"
+      },
+      "solid": {
+        "$value": "{palette.grass.9}"
+      },
+      "solid-hover": {
+        "$value": "{palette.grass.10}"
+      },
+      "contrast": {
+        "$value": {
+          "colorSpace": "oklch",
+          "components": [
+            0.2431,
+            0.0076,
+            95.37
+          ],
+          "hex": "#21201c"
+        }
+      }
+    },
+    "warning": {
+      "1": {
+        "$value": "{palette.amber.1}"
+      },
+      "2": {
+        "$value": "{palette.amber.2}"
+      },
+      "3": {
+        "$value": "{palette.amber.3}"
+      },
+      "4": {
+        "$value": "{palette.amber.4}"
+      },
+      "5": {
+        "$value": "{palette.amber.5}"
+      },
+      "6": {
+        "$value": "{palette.amber.6}"
+      },
+      "7": {
+        "$value": "{palette.amber.7}"
+      },
+      "8": {
+        "$value": "{palette.amber.8}"
+      },
+      "9": {
+        "$value": "{palette.amber.9}"
+      },
+      "10": {
+        "$value": "{palette.amber.10}"
+      },
+      "11": {
+        "$value": "{palette.amber.11}"
+      },
+      "12": {
+        "$value": "{palette.amber.12}"
+      },
+      "solid": {
+        "$value": "{palette.amber.9}"
+      },
+      "solid-hover": {
+        "$value": "{palette.amber.10}"
+      },
+      "contrast": {
+        "$value": {
+          "colorSpace": "oklch",
+          "components": [
+            0.2431,
+            0.0076,
+            95.37
+          ],
+          "hex": "#21201c"
+        }
+      }
+    },
+    "danger": {
+      "1": {
+        "$value": "{palette.red.1}"
+      },
+      "2": {
+        "$value": "{palette.red.2}"
+      },
+      "3": {
+        "$value": "{palette.red.3}"
+      },
+      "4": {
+        "$value": "{palette.red.4}"
+      },
+      "5": {
+        "$value": "{palette.red.5}"
+      },
+      "6": {
+        "$value": "{palette.red.6}"
+      },
+      "7": {
+        "$value": "{palette.red.7}"
+      },
+      "8": {
+        "$value": "{palette.red.8}"
+      },
+      "9": {
+        "$value": "{palette.red.9}"
+      },
+      "10": {
+        "$value": "{palette.red.10}"
+      },
+      "11": {
+        "$value": "{palette.red.11}"
+      },
+      "12": {
+        "$value": "{palette.red.12}"
+      },
+      "solid": {
+        "$value": "{palette.red.11}"
+      },
+      "solid-hover": {
+        "$value": "{palette.red.12}"
+      },
+      "contrast": {
+        "$value": "{palette.red.1}"
+      }
+    },
+    "info": {
+      "1": {
+        "$value": "{palette.blue.1}"
+      },
+      "2": {
+        "$value": "{palette.blue.2}"
+      },
+      "3": {
+        "$value": "{palette.blue.3}"
+      },
+      "4": {
+        "$value": "{palette.blue.4}"
+      },
+      "5": {
+        "$value": "{palette.blue.5}"
+      },
+      "6": {
+        "$value": "{palette.blue.6}"
+      },
+      "7": {
+        "$value": "{palette.blue.7}"
+      },
+      "8": {
+        "$value": "{palette.blue.8}"
+      },
+      "9": {
+        "$value": "{palette.blue.9}"
+      },
+      "10": {
+        "$value": "{palette.blue.10}"
+      },
+      "11": {
+        "$value": "{palette.blue.11}"
+      },
+      "12": {
+        "$value": "{palette.blue.12}"
+      },
+      "solid": {
+        "$value": "{palette.blue.9}"
+      },
+      "solid-hover": {
+        "$value": "{palette.blue.9}"
+      },
+      "contrast": {
+        "$value": {
+          "colorSpace": "oklch",
+          "components": [
+            0.2431,
+            0.0076,
+            95.37
+          ],
+          "hex": "#21201c"
+        }
+      }
+    }
+  }
+}

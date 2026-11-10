@@ -11,7 +11,7 @@ module(name = "tbhb_dev_design")
 bazel_dep(name = "tbhb_rules", version = "0.0.0", dev_dependency = True)
 git_override(
     module_name = "tbhb_rules",
-    commit = "f7f4c1f893f9dad8975f5cd2b1bbb24819604c12",
+    commit = "4fd6cbee0eed3042790e7487cf41edb7a79c5670",
     remote = "https://github.com/tbhb-dev/rules.git",
 )
 
@@ -23,7 +23,7 @@ git_override(
 bazel_dep(name = "tbhb_rules_typescript", version = "0.0.0", dev_dependency = True)
 git_override(
     module_name = "tbhb_rules_typescript",
-    commit = "f7f4c1f893f9dad8975f5cd2b1bbb24819604c12",
+    commit = "4fd6cbee0eed3042790e7487cf41edb7a79c5670",
     remote = "https://github.com/tbhb-dev/rules.git",
     strip_prefix = "typescript",
 )
@@ -35,7 +35,7 @@ git_override(
 bazel_dep(name = "tbhb_rules_astro", version = "0.0.0", dev_dependency = True)
 git_override(
     module_name = "tbhb_rules_astro",
-    commit = "f7f4c1f893f9dad8975f5cd2b1bbb24819604c12",
+    commit = "4fd6cbee0eed3042790e7487cf41edb7a79c5670",
     remote = "https://github.com/tbhb-dev/rules.git",
     strip_prefix = "astro",
 )
@@ -46,7 +46,7 @@ git_override(
 bazel_dep(name = "tbhb_rules_playwright", version = "0.0.0", dev_dependency = True)
 git_override(
     module_name = "tbhb_rules_playwright",
-    commit = "f7f4c1f893f9dad8975f5cd2b1bbb24819604c12",
+    commit = "4fd6cbee0eed3042790e7487cf41edb7a79c5670",
     remote = "https://github.com/tbhb-dev/rules.git",
     strip_prefix = "playwright",
 )
@@ -58,9 +58,19 @@ git_override(
 bazel_dep(name = "tbhb_rules_storybook", version = "0.0.0", dev_dependency = True)
 git_override(
     module_name = "tbhb_rules_storybook",
-    commit = "f7f4c1f893f9dad8975f5cd2b1bbb24819604c12",
+    commit = "4fd6cbee0eed3042790e7487cf41edb7a79c5670",
     remote = "https://github.com/tbhb-dev/rules.git",
     strip_prefix = "storybook",
+)
+
+# tbhb_rules_tokens comes from the same rules commit as tbhb_rules; locally,
+# `common --override_module=tbhb_rules_tokens=../rules/tokens`.
+bazel_dep(name = "tbhb_rules_tokens", version = "0.0.0", dev_dependency = True)
+git_override(
+    module_name = "tbhb_rules_tokens",
+    commit = "4fd6cbee0eed3042790e7487cf41edb7a79c5670",
+    remote = "https://github.com/tbhb-dev/rules.git",
+    strip_prefix = "tokens",
 )
 
 # The workspace's npm packages (package.json, pnpm-workspace.yaml and each
@@ -79,6 +89,8 @@ npm.npm_translate_lock(
         "//:package.json",
         "//:pnpm-workspace.yaml",
         "//packages/tokens:package.json",
+        "//packages/tokens-css:package.json",
+        "//packages/tokens-js:package.json",
         "//site:package.json",
         "//storybook/astro:package.json",
         "//storybook/html:package.json",

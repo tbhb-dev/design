@@ -3,6 +3,9 @@
   "version": "0.0.0",
   "private": true,
   "type": "module",
-  "description": "Design tokens for tbhb.dev projects.",
-  "license": "Apache-2.0"
+  "description": "Design tokens for tbhb.dev projects, as DTCG 2025.10 documents.",
+  "license": "Apache-2.0",
+  "exports": {
+    "./*": "./*"
+  }
 }

@@ -1,0 +1,254 @@
+{
+  "name": "tbhb.dev",
+  "version": "2025.10",
+  "description": "Base tokens and the Radix Colors palette library in light and dark, then semantic tokens: themes that map roles onto palettes, and colors named for what they do.",
+  "sets": {
+    "base": {
+      "sources": [
+        {
+          "$ref": "base/duration.tokens.json"
+        },
+        {
+          "$ref": "base/easing.tokens.json"
+        },
+        {
+          "$ref": "base/font.tokens.json"
+        },
+        {
+          "$ref": "base/radius.tokens.json"
+        },
+        {
+          "$ref": "base/space.tokens.json"
+        }
+      ]
+    },
+    "semantic": {
+      "sources": [
+        {
+          "$ref": "semantic/color.tokens.json"
+        }
+      ]
+    }
+  },
+  "modifiers": {
+    "mode": {
+      "contexts": {
+        "light": [
+          {
+            "$ref": "base/palettes/amber.light.tokens.json"
+          },
+          {
+            "$ref": "base/palettes/blue.light.tokens.json"
+          },
+          {
+            "$ref": "base/palettes/bronze.light.tokens.json"
+          },
+          {
+            "$ref": "base/palettes/brown.light.tokens.json"
+          },
+          {
+            "$ref": "base/palettes/crimson.light.tokens.json"
+          },
+          {
+            "$ref": "base/palettes/cyan.light.tokens.json"
+          },
+          {
+            "$ref": "base/palettes/gold.light.tokens.json"
+          },
+          {
+            "$ref": "base/palettes/grass.light.tokens.json"
+          },
+          {
+            "$ref": "base/palettes/gray.light.tokens.json"
+          },
+          {
+            "$ref": "base/palettes/green.light.tokens.json"
+          },
+          {
+            "$ref": "base/palettes/indigo.light.tokens.json"
+          },
+          {
+            "$ref": "base/palettes/iris.light.tokens.json"
+          },
+          {
+            "$ref": "base/palettes/jade.light.tokens.json"
+          },
+          {
+            "$ref": "base/palettes/lime.light.tokens.json"
+          },
+          {
+            "$ref": "base/palettes/mauve.light.tokens.json"
+          },
+          {
+            "$ref": "base/palettes/mint.light.tokens.json"
+          },
+          {
+            "$ref": "base/palettes/olive.light.tokens.json"
+          },
+          {
+            "$ref": "base/palettes/orange.light.tokens.json"
+          },
+          {
+            "$ref": "base/palettes/pink.light.tokens.json"
+          },
+          {
+            "$ref": "base/palettes/plum.light.tokens.json"
+          },
+          {
+            "$ref": "base/palettes/purple.light.tokens.json"
+          },
+          {
+            "$ref": "base/palettes/red.light.tokens.json"
+          },
+          {
+            "$ref": "base/palettes/ruby.light.tokens.json"
+          },
+          {
+            "$ref": "base/palettes/sage.light.tokens.json"
+          },
+          {
+            "$ref": "base/palettes/sand.light.tokens.json"
+          },
+          {
+            "$ref": "base/palettes/sky.light.tokens.json"
+          },
+          {
+            "$ref": "base/palettes/slate.light.tokens.json"
+          },
+          {
+            "$ref": "base/palettes/teal.light.tokens.json"
+          },
+          {
+            "$ref": "base/palettes/tomato.light.tokens.json"
+          },
+          {
+            "$ref": "base/palettes/violet.light.tokens.json"
+          },
+          {
+            "$ref": "base/palettes/yellow.light.tokens.json"
+          }
+        ],
+        "dark": [
+          {
+            "$ref": "base/palettes/amber.dark.tokens.json"
+          },
+          {
+            "$ref": "base/palettes/blue.dark.tokens.json"
+          },
+          {
+            "$ref": "base/palettes/bronze.dark.tokens.json"
+          },
+          {
+            "$ref": "base/palettes/brown.dark.tokens.json"
+          },
+          {
+            "$ref": "base/palettes/crimson.dark.tokens.json"
+          },
+          {
+            "$ref": "base/palettes/cyan.dark.tokens.json"
+          },
+          {
+            "$ref": "base/palettes/gold.dark.tokens.json"
+          },
+          {
+            "$ref": "base/palettes/grass.dark.tokens.json"
+          },
+          {
+            "$ref": "base/palettes/gray.dark.tokens.json"
+          },
+          {
+            "$ref": "base/palettes/green.dark.tokens.json"
+          },
+          {
+            "$ref": "base/palettes/indigo.dark.tokens.json"
+          },
+          {
+            "$ref": "base/palettes/iris.dark.tokens.json"
+          },
+          {
+            "$ref": "base/palettes/jade.dark.tokens.json"
+          },
+          {
+            "$ref": "base/palettes/lime.dark.tokens.json"
+          },
+          {
+            "$ref": "base/palettes/mauve.dark.tokens.json"
+          },
+          {
+            "$ref": "base/palettes/mint.dark.tokens.json"
+          },
+          {
+            "$ref": "base/palettes/olive.dark.tokens.json"
+          },
+          {
+            "$ref": "base/palettes/orange.dark.tokens.json"
+          },
+          {
+            "$ref": "base/palettes/pink.dark.tokens.json"
+          },
+          {
+            "$ref": "base/palettes/plum.dark.tokens.json"
+          },
+          {
+            "$ref": "base/palettes/purple.dark.tokens.json"
+          },
+          {
+            "$ref": "base/palettes/red.dark.tokens.json"
+          },
+          {
+            "$ref": "base/palettes/ruby.dark.tokens.json"
+          },
+          {
+            "$ref": "base/palettes/sage.dark.tokens.json"
+          },
+          {
+            "$ref": "base/palettes/sand.dark.tokens.json"
+          },
+          {
+            "$ref": "base/palettes/sky.dark.tokens.json"
+          },
+          {
+            "$ref": "base/palettes/slate.dark.tokens.json"
+          },
+          {
+            "$ref": "base/palettes/teal.dark.tokens.json"
+          },
+          {
+            "$ref": "base/palettes/tomato.dark.tokens.json"
+          },
+          {
+            "$ref": "base/palettes/violet.dark.tokens.json"
+          },
+          {
+            "$ref": "base/palettes/yellow.dark.tokens.json"
+          }
+        ]
+      },
+      "default": "light"
+    },
+    "theme": {
+      "contexts": {
+        "tbhb": [
+          {
+            "$ref": "semantic/themes/tbhb.tokens.json"
+          }
+        ]
+      },
+      "default": "tbhb"
+    }
+  },
+  "resolutionOrder": [
+    {
+      "$ref": "#/sets/base"
+    },
+    {
+      "$ref": "#/modifiers/mode"
+    },
+    {
+      "$ref": "#/modifiers/theme"
+    },
+    {
+      "$ref": "#/sets/semantic"
+    }
+  ]
+}
