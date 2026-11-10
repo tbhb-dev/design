@@ -89,6 +89,13 @@ copy_to_bin(
     visibility = ["//packages/tokens-js:__pkg__"],
 )
 
+# Semantic source in the output tree, for tokens-js's documentation metadata.
+copy_to_bin(
+    name = "color_file",
+    srcs = ["semantic/color.tokens.json"],
+    visibility = ["//packages/tokens-js:__pkg__"],
+)
+
 # Every theme × mode resolves, and text meets WCAG AA on the surfaces it
 # sits on, in each of them.
 tokens_test(

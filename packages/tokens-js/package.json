@@ -9,6 +9,10 @@
     "./palettes.js": {
       "types": "./palettes.d.ts",
       "default": "./palettes.js"
+    },
+    "./colors.js": {
+      "types": "./colors.d.ts",
+      "default": "./colors.js"
     }
   }
 }

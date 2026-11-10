@@ -16,6 +16,12 @@ importers:
 
   site:
     dependencies:
+      '@tbhb-dev/tokens-css':
+        specifier: workspace:*
+        version: link:../packages/tokens-css
+      '@tbhb-dev/tokens-js':
+        specifier: workspace:*
+        version: link:../packages/tokens-js
       astro:
         specifier: 7.4.5
         version: 7.4.5(yaml@2.9.1)
