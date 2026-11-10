@@ -13,7 +13,7 @@
     "@tbhb-dev/components": "workspace:*"
   },
   "devDependencies": {
-    "vite": "8.3.5",
+    "vite": "8.3.6",
     "@types/react": "19.3.0"
   }
 }
