@@ -31,6 +31,10 @@ importers:
       astro:
         specifier: 7.4.5
         version: 7.4.5(yaml@2.9.1)
+    devDependencies:
+      vite:
+        specifier: 8.3.5
+        version: 8.3.5(yaml@2.9.1)
 
   storybook/html:
     dependencies:
@@ -40,6 +44,10 @@ importers:
       '@tbhb-dev/tokens-js':
         specifier: workspace:*
         version: link:../../packages/tokens-js
+    devDependencies:
+      vite:
+        specifier: 8.3.5
+        version: 8.3.5(yaml@2.9.1)
 
   storybook/react:
     dependencies:
@@ -55,6 +63,13 @@ importers:
       react-dom:
         specifier: 19.3.1
         version: 19.3.1(react@19.3.1)
+    devDependencies:
+      '@types/react':
+        specifier: 19.3.0
+        version: 19.3.0
+      vite:
+        specifier: 8.3.5
+        version: 8.3.5(yaml@2.9.1)
 
   storybook/web-components:
     dependencies:
@@ -67,6 +82,10 @@ importers:
       lit:
         specifier: 3.3.3
         version: 3.3.3
+    devDependencies:
+      vite:
+        specifier: 8.3.5
+        version: 8.3.5(yaml@2.9.1)
 
 packages:
 
@@ -583,6 +602,9 @@ packages:
   '@types/nlcst@2.0.3':
     resolution: {integrity: sha512-vSYNSDe6Ix3q+6Z7ri9lyWqgGhJTmzRjZRqyq15N0Z/1/UnVsno9G/N40NBijoYx2seFDIl0+B2mgAb9mezUCA==}
 
+  '@types/react@19.3.0':
+    resolution: {integrity: sha512-N0rFCuH9YoxG9/m61l9MfpJKfmLOVU0em7ipIz6TRgSSkvReLB9vL85GB+yr8Bs5leqpvg96JSwF4ZS1s4viQg==}
+
   '@types/trusted-types@2.0.7':
     resolution: {integrity: sha512-ScaPdn1dQczgbl0QFTeTOmVHFULt394XJgOQNoyVhZ6r2vLnMLJfBPd53SB52T/3G36VI1/g2MZaX0cwDuXsfw==}
 
@@ -684,6 +706,9 @@ packages:
   csso@5.0.5:
     resolution: {integrity: sha512-0LrrStPOdJj+SPCCrGhzryycLjwcgUSHBtxNA8aIDxf0GLsRh1cKYhB00Gd1lDOS4yGH69+SNn13+TWbVHETFQ==}
     engines: {node: ^10 || ^12.20.0 || ^14.13.0 || >=15.0.0, npm: '>=7.0.0'}
+
+  csstype@3.2.3:
+    resolution: {integrity: sha512-z1HGKcYy2xA8AGQfwrn0PAy+PB7X/GSj3UVJW9qKyn43xWa+gl5nXmU4qqLMRzWVLFC8KusUX8T/0kCiOYpAIQ==}
 
   defu@6.1.7:
     resolution: {integrity: sha512-7z22QmUWiQ/2d0KkdYmANbRUVABpZ9SNYyH5vx6PZ+nE5bcC0l7uFvEfHlyld/HcGBFTL536ClDt3DEcSlEJAQ==}
@@ -1732,6 +1757,10 @@ snapshots:
     dependencies:
       '@types/unist': 3.0.3
 
+  '@types/react@19.3.0':
+    dependencies:
+      csstype: 3.2.3
+
   '@types/trusted-types@2.0.7': {}
 
   '@types/unist@3.0.3': {}
@@ -1895,6 +1924,8 @@ snapshots:
   csso@5.0.5:
     dependencies:
       css-tree: 2.2.1
+
+  csstype@3.2.3: {}
 
   defu@6.1.7: {}
 

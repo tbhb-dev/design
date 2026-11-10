@@ -2,12 +2,20 @@
 // Copyright Tony Burns
 
 import { html } from "lit";
-import { COLOR_SCALES, SCALES, STEPS, label, swatchName, swatchStep, variable } from "./palette.ts";
+import {
+  COLOR_SCALES,
+  label,
+  SCALES,
+  STEPS,
+  swatchName,
+  swatchStep,
+  variable,
+} from "./palette.ts";
 
 const row = (name: string, scale: string, alpha: boolean) =>
   html`<span class="tbhb-name">${name}</span>${STEPS.map(
-      (step) =>
-        html`<button
+    (step) =>
+      html`<button
           type="button"
           class="tbhb-swatch ${alpha ? "tbhb-alpha" : ""}"
           data-scale=${scale}
@@ -16,7 +24,7 @@ const row = (name: string, scale: string, alpha: boolean) =>
           title=${variable(scale, step, alpha)}
           style="--tbhb-swatch: var(${variable(scale, step, alpha)})"
         ></button>`,
-    )}`;
+  )}`;
 
 const scaleSection = (scale: string) => html`<section>
   <h2>${label(scale)}</h2>
@@ -36,7 +44,7 @@ export const ColorScales = {
     <h1>Color scales</h1>
     <p>${COLOR_SCALES}</p>
     <div class="tbhb-grid">
-      <span></span>${STEPS.map((step) => html`<span class="tbhb-step">${step}</span>`)}
+      <span></span>${STEPS.map((step) => html`<span class="tbhb-step">${String(step)}</span>`)}
     </div>
     ${SCALES.map(scaleSection)}
   </main>`,

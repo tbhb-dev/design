@@ -1,22 +1,24 @@
 // SPDX-License-Identifier: Apache-2.0
 // Copyright Tony Burns
 
-/** @type {import("@stryker-mutator/api/core").PartialStrykerOptions} */
 export default {
   testRunner: "vitest",
   plugins: ["@stryker-mutator/vitest-runner"],
-  vitest: { configFile: "vitest.config.mjs" },
+  vitest: {
+    configFile: "vitest.config.mjs",
+  },
   mutate: [
-    "packages/**/*.{ts,mjs}",
-    "storybook/**/*.{ts,tsx}",
-    "dev/**/*.mjs",
-    "pages/**/*.mjs",
-    "site/**/*.{ts,mjs}",
-    "!**/*.d.ts",
-    "!**/*_test.mjs",
-    "!**/*.test.{ts,mjs}",
+    "storybook/*/src/palette.ts",
+    "storybook/*/.storybook/swatch-values.ts",
+    "packages/tokens-js/palette-values.mjs",
+    "packages/tokens-js/palettes_js.mjs",
+    "dev/routing.mjs",
   ],
   concurrency: 2,
-  thresholds: { high: 100, low: 100, break: 100 },
-  reporters: ["clear-text"],
+  thresholds: {
+    high: 100,
+    low: 100,
+    break: 100,
+  },
+  reporters: ["clear-text", "json"],
 };

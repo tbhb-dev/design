@@ -4,13 +4,9 @@
     "commit": "",
     "pr": ""
   },
-  "enabledMcpjsonServers": [
-    "awrel"
-  ],
+  "enabledMcpjsonServers": ["awrel"],
   "permissions": {
-    "allow": [
-      "mcp__awrel"
-    ],
+    "allow": ["mcp__awrel"],
     "deny": [
       "Bash(gh pr create:*)",
       "Bash(gh pr edit:*)",

@@ -4,11 +4,11 @@ This repository is the design system for tbhb.dev projects. It's a pnpm workspac
 
 ## Packages
 
-| Package | Directory | Status |
-| --- | --- | --- |
-| `@tbhb-dev/tokens` | `packages/tokens/` | Design Tokens Community Group (DTCG) documents, private, unpublished |
-| `@tbhb-dev/tokens-css` | `packages/tokens-css/` | CSS custom properties, private, unpublished |
-| `@tbhb-dev/tokens-js` | `packages/tokens-js/` | JavaScript modules, private, unpublished |
+| Package                | Directory              | Status                                                               |
+| ---------------------- | ---------------------- | -------------------------------------------------------------------- |
+| `@tbhb-dev/tokens`     | `packages/tokens/`     | Design Tokens Community Group (DTCG) documents, private, unpublished |
+| `@tbhb-dev/tokens-css` | `packages/tokens-css/` | CSS custom properties, private, unpublished                          |
+| `@tbhb-dev/tokens-js`  | `packages/tokens-js/`  | JavaScript modules, private, unpublished                             |
 
 ## Workflow
 

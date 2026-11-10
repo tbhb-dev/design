@@ -1,7 +1,15 @@
 // SPDX-License-Identifier: Apache-2.0
 // Copyright Tony Burns
 
-import { COLOR_SCALES, SCALES, STEPS, label, swatchName, swatchStep, variable } from "./palette.ts";
+import {
+  COLOR_SCALES,
+  label,
+  SCALES,
+  STEPS,
+  swatchName,
+  swatchStep,
+  variable,
+} from "./palette.ts";
 
 const row = (name: string, scale: string, alpha: boolean) =>
   `<span class="tbhb-name">${name}</span>${STEPS.map(
@@ -22,7 +30,7 @@ export const ColorScales = {
   render: () => `<main class="tbhb-page">
   <h1>Color scales</h1>
   <p>${COLOR_SCALES}</p>
-  <div class="tbhb-grid"><span></span>${STEPS.map((step) => `<span class="tbhb-step">${step}</span>`).join("")}</div>
+  <div class="tbhb-grid"><span></span>${STEPS.map((step) => `<span class="tbhb-step">${String(step)}</span>`).join("")}</div>
   ${SCALES.map(scaleSection).join("")}
 </main>`,
 };

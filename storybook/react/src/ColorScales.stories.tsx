@@ -2,9 +2,25 @@
 // Copyright Tony Burns
 
 import type { CSSProperties } from "react";
-import { COLOR_SCALES, SCALES, STEPS, label, swatchName, swatchStep, variable } from "./palette.ts";
+import {
+  COLOR_SCALES,
+  label,
+  SCALES,
+  STEPS,
+  swatchName,
+  swatchStep,
+  variable,
+} from "./palette.ts";
 
-function Row({ name, scale, alpha }: { name: string; scale: string; alpha: boolean }) {
+function Row({
+  name,
+  scale,
+  alpha,
+}: {
+  name: string;
+  scale: string;
+  alpha: boolean;
+}) {
   return (
     <>
       <span className="tbhb-name">{name}</span>
@@ -17,7 +33,11 @@ function Row({ name, scale, alpha }: { name: string; scale: string; alpha: boole
           data-step={swatchStep(step, alpha)}
           aria-label={swatchName(scale, step, alpha)}
           title={variable(scale, step, alpha)}
-          style={{ "--tbhb-swatch": `var(${variable(scale, step, alpha)})` } as CSSProperties}
+          style={
+            {
+              "--tbhb-swatch": `var(${variable(scale, step, alpha)})`,
+            } as CSSProperties
+          }
         />
       ))}
     </>

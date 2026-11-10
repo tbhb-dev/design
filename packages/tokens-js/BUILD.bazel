@@ -13,6 +13,7 @@ exports_files(["package.json"])
 
 js_binary(
     name = "palettes_js_tool",
+    data = ["palette-values.mjs"],
     entry_point = "palettes_js.mjs",
 )
 

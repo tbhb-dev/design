@@ -2,7 +2,16 @@
 // Copyright Tony Burns
 
 import { html } from "lit";
-import { COLORS, SCALES, STEPS, USES, label, swatchName, swatchStep, variable } from "./palette.ts";
+import {
+  COLORS,
+  label,
+  SCALES,
+  STEPS,
+  swatchName,
+  swatchStep,
+  USES,
+  variable,
+} from "./palette.ts";
 
 const swatch = (scale: string, step: number, alpha: boolean) =>
   html`<button
@@ -28,14 +37,16 @@ export const Colors = {
     </fieldset>
     <div class="tbhb-grid">
       <span></span>${USES.map(
-        (use) => html`<span class="tbhb-use" style="grid-column: span ${use.steps}">${use.name}</span>`,
+        (use) =>
+          html`<span class="tbhb-use" style="grid-column: span ${String(use.steps)}">${use.name}</span>`,
       )}
-      <span></span>${STEPS.map((step) => html`<span class="tbhb-step">${step}</span>`)}
+      <span></span>${STEPS.map((step) => html`<span class="tbhb-step">${String(step)}</span>`)}
       ${SCALES.map(
         (scale) =>
           html`<span class="tbhb-name">${label(scale)}</span>${STEPS.map(
-              (step) => html`<div>${swatch(scale, step, false)}${swatch(scale, step, true)}</div>`,
-            )}`,
+            (step) =>
+              html`<div>${swatch(scale, step, false)}${swatch(scale, step, true)}</div>`,
+          )}`,
       )}
     </div>
   </main>`,

@@ -15,5 +15,13 @@
     "noEmit": true,
     "skipLibCheck": true
   },
-  "include": ["packages", "storybook", "storybook/*/.storybook/**/*.ts", "site", "dev", "pages"]
+  "include": [
+    "packages",
+    "storybook",
+    "storybook/*/.storybook/**/*.ts",
+    "site",
+    "dev",
+    "pages",
+    "site/.astro/types.d.ts"
+  ]
 }

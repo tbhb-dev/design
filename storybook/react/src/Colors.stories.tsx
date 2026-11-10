@@ -2,9 +2,26 @@
 // Copyright Tony Burns
 
 import type { CSSProperties } from "react";
-import { COLORS, SCALES, STEPS, USES, label, swatchName, swatchStep, variable } from "./palette.ts";
+import {
+  COLORS,
+  label,
+  SCALES,
+  STEPS,
+  swatchName,
+  swatchStep,
+  USES,
+  variable,
+} from "./palette.ts";
 
-function Swatch({ scale, step, alpha }: { scale: string; step: number; alpha: boolean }) {
+function Swatch({
+  scale,
+  step,
+  alpha,
+}: {
+  scale: string;
+  step: number;
+  alpha: boolean;
+}) {
   const name = variable(scale, step, alpha);
   return (
     <button
@@ -29,7 +46,13 @@ export const Colors = {
       <fieldset className="tbhb-toggle">
         <legend>Scales</legend>
         <label>
-          <input type="radio" name="tbhb-variant" value="solid" defaultChecked /> Solid
+          <input
+            type="radio"
+            name="tbhb-variant"
+            value="solid"
+            defaultChecked
+          />{" "}
+          Solid
         </label>
         <label>
           <input type="radio" name="tbhb-variant" value="alpha" /> Alpha
@@ -38,7 +61,11 @@ export const Colors = {
       <div className="tbhb-grid">
         <span />
         {USES.map((use) => (
-          <span key={use.name} className="tbhb-use" style={{ gridColumn: `span ${use.steps}` }}>
+          <span
+            key={use.name}
+            className="tbhb-use"
+            style={{ gridColumn: `span ${String(use.steps)}` }}
+          >
             {use.name}
           </span>
         ))}
@@ -53,7 +80,7 @@ export const Colors = {
             {label(scale)}
           </span>,
           ...STEPS.map((step) => (
-            <div key={`${scale}-${step}`}>
+            <div key={`${scale}-${String(step)}`}>
               <Swatch scale={scale} step={step} alpha={false} />
               <Swatch scale={scale} step={step} alpha />
             </div>

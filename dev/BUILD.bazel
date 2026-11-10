@@ -24,7 +24,7 @@ SERVERS = {
 # that starts the binary directly keeps them.
 js_binary(
     name = "dev",
-    data = SERVERS.values(),
+    data = SERVERS.values() + ["routing.mjs"],
     entry_point = "proxy.mjs",
     env = {
         "DEV_ROUTES": ";".join(["{}=$(rlocationpath {})".format(prefix, target) for prefix, target in SERVERS.items()]),

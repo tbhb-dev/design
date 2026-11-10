@@ -19,39 +19,14 @@
 // Usage: proxy.mjs [--port N] [--host H] [<prefix>=<dev binary> ...]
 
 import { spawn } from "node:child_process";
-import { request, createServer } from "node:http";
+import { createServer, request } from "node:http";
 import { connect, createServer as createNetServer } from "node:net";
 import { join } from "node:path";
 
+import { parseArgs, routeFor } from "./routing.mjs";
+
 const READY_TIMEOUT_MS = 120_000;
 const STOP_TIMEOUT_MS = 10_000;
-
-function parseArgs(argv) {
-  const options = { port: 4300, host: "127.0.0.1", routes: [] };
-  for (let i = 0; i < argv.length; i++) {
-    const arg = argv[i];
-    const flag = /^--(port|host)(?:=(.*))?$/.exec(arg);
-    if (flag) {
-      const value = flag[2] ?? argv[++i];
-      if (!value) {
-        throw new Error(`proxy: --${flag[1]} needs a value`);
-      }
-      options[flag[1]] = flag[1] === "port" ? Number(value) : value;
-      continue;
-    }
-    const route = /^(\/[^=]*)=(.+)$/.exec(arg);
-    if (!route) {
-      throw new Error(`proxy: unknown argument ${arg}`);
-    }
-    options.routes.push({ prefix: route[1], binary: route[2] });
-  }
-  if (!Number.isInteger(options.port) || options.port <= 0) {
-    throw new Error(`proxy: --port must be a positive integer`);
-  }
-  // Longest prefix first, so /storybook/react/ wins over /.
-  options.routes.sort((a, b) => b.prefix.length - a.prefix.length);
-  return options;
-}
 
 function freePort() {
   return new Promise((resolve, reject) => {
@@ -125,12 +100,6 @@ function start(route) {
   prefixLines(route.prefix, child.stderr, process.stderr);
   route.child = child;
   route.exited = new Promise((resolve) => child.on("exit", resolve));
-}
-
-function routeFor(routes, url) {
-  return routes.find(
-    (r) => url.startsWith(r.prefix) || `${url}/` === r.prefix,
-  );
 }
 
 function forward(routes, req, res) {
