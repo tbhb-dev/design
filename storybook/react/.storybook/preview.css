@@ -1,8 +1,6 @@
 /* SPDX-License-Identifier: Apache-2.0 */
 /* Copyright Tony Burns */
 
-@import "@tbhb-dev/tokens-css/all.css";
-
 body {
   background: var(--tbhb-color-background);
   color: var(--tbhb-color-text);
@@ -63,7 +61,11 @@ button.tbhb-swatch:focus-visible {
 .tbhb-alpha {
   background:
     linear-gradient(var(--tbhb-swatch), var(--tbhb-swatch)),
-    repeating-conic-gradient(var(--tbhb-color-element-active) 0 25%, var(--tbhb-color-background) 0 50%) 0 0 / 12px 12px;
+    repeating-conic-gradient(
+      var(--tbhb-color-element-active) 0 25%,
+      var(--tbhb-color-background) 0 50%
+    )
+    0 0 / 12px 12px;
 }
 
 .tbhb-mode {

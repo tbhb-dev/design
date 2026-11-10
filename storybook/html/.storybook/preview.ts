@@ -1,6 +1,7 @@
 // SPDX-License-Identifier: Apache-2.0
 // Copyright Tony Burns
 
+import "@tbhb-dev/tokens-css/all.css";
 import "./preview.css";
 import "./swatch-dialog.ts";
 
@@ -11,7 +12,12 @@ export default {
   globalTypes: {
     theme: {
       description: "Theme",
-      toolbar: { title: "Theme", icon: "paintbrush", items: ["tbhb"], dynamicTitle: true },
+      toolbar: {
+        title: "Theme",
+        icon: "paintbrush",
+        items: ["tbhb"],
+        dynamicTitle: true,
+      },
     },
     mode: {
       description: "Color mode",
@@ -29,7 +35,10 @@ export default {
   },
   initialGlobals: { theme: "tbhb", mode: "system" },
   decorators: [
-    (story: () => unknown, { globals }: { globals: Record<string, string> }) => {
+    (
+      story: () => unknown,
+      { globals }: { globals: Record<string, string> },
+    ) => {
       const root = document.documentElement;
       root.dataset.theme = globals.theme ?? "tbhb";
       if (globals.mode === "light" || globals.mode === "dark") {

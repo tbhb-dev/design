@@ -2,11 +2,31 @@
 // SPDX-License-Identifier: Apache-2.0
 // Copyright Tony Burns
 
-import { COLOR_SCALES, SCALES, STEPS, label, swatchName, swatchStep, variable } from "./palette.ts";
+import {
+  COLOR_SCALES,
+  label,
+  SCALES,
+  STEPS,
+  swatchName,
+  swatchStep,
+  variable,
+} from "./palette.ts";
 
 const ROWS = [
-  { mode: "light", rows: [{ suffix: "", alpha: false }, { suffix: " Alpha", alpha: true }] },
-  { mode: "dark", rows: [{ suffix: " Dark", alpha: false }, { suffix: " Dark Alpha", alpha: true }] },
+  {
+    mode: "light",
+    rows: [
+      { suffix: "", alpha: false },
+      { suffix: " Alpha", alpha: true },
+    ],
+  },
+  {
+    mode: "dark",
+    rows: [
+      { suffix: " Dark", alpha: false },
+      { suffix: " Dark Alpha", alpha: true },
+    ],
+  },
 ];
 ---
 

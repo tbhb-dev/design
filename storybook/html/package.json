@@ -8,5 +8,8 @@
   "dependencies": {
     "@tbhb-dev/tokens-css": "workspace:*",
     "@tbhb-dev/tokens-js": "workspace:*"
+  },
+  "devDependencies": {
+    "vite": "8.3.5"
   }
 }

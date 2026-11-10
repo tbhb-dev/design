@@ -11,7 +11,10 @@ export type Color = {
 };
 
 /** Mode, then scale, then step ("1" to "12", "a1" to "a12"). */
-export type Palettes = Record<"light" | "dark", Record<string, Record<string, Color>>>;
+export type Palettes = Record<
+  "light" | "dark",
+  Record<string, Record<string, Color>>
+>;
 
 declare const palettes: Palettes;
 export default palettes;

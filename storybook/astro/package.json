@@ -9,5 +9,8 @@
     "@tbhb-dev/tokens-css": "workspace:*",
     "@tbhb-dev/tokens-js": "workspace:*",
     "astro": "7.4.5"
+  },
+  "devDependencies": {
+    "vite": "8.3.5"
   }
 }

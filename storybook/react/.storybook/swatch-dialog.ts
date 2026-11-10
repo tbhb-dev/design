@@ -8,6 +8,8 @@
 
 import palettes, { type Color } from "@tbhb-dev/tokens-js/palettes.js";
 
+import { displayP3, oklch, srgb } from "./swatch-values.ts";
+
 const USES = [
   "Backgrounds",
   "Backgrounds",
@@ -38,25 +40,13 @@ const PURPOSES = [
   "High-contrast text",
 ];
 
-const over = (alpha?: number) => (alpha === undefined ? "" : ` / ${alpha}`);
+const label = (scale: string) => scale.charAt(0).toUpperCase() + scale.slice(1);
 
-const oklch = ({ components: [l, c, h], alpha }: Color) => `oklch(${l} ${c} ${h}${over(alpha)})`;
-
-// Display P3 and sRGB, the spaces native apps take: SwiftUI's
-// Color(.displayP3, ...), Android's ColorSpace.Named.DISPLAY_P3, and sRGB
-// hex everywhere. An alpha step's hex gains its alpha as a fourth byte.
-const displayP3 = ({ p3: [r, g, b], alpha }: Color) => `color(display-p3 ${r} ${g} ${b}${over(alpha)})`;
-
-const srgb = ({ hex, alpha }: Color) =>
-  alpha === undefined
-    ? hex
-    : `${hex}${Math.round(alpha * 255)
-        .toString(16)
-        .padStart(2, "0")}`;
-
-const label = (scale: string) => scale[0].toUpperCase() + scale.slice(1);
-
-function element(tag: string, props: Record<string, string> = {}, ...children: (Node | string)[]) {
+function element(
+  tag: string,
+  props: Record<string, string> = {},
+  ...children: (Node | string)[]
+) {
   const node = document.createElement(tag);
   for (const [key, value] of Object.entries(props)) {
     node.setAttribute(key, value);
@@ -69,7 +59,10 @@ function rows(entries: [string, string][]) {
   return element(
     "dl",
     {},
-    ...entries.flatMap(([term, detail]) => [element("dt", {}, term), element("dd", {}, detail)]),
+    ...entries.flatMap(([term, detail]) => [
+      element("dt", {}, term),
+      element("dd", {}, detail),
+    ]),
   );
 }
 
@@ -91,10 +84,19 @@ function open(swatch: HTMLElement) {
   const { scale = "", step = "" } = swatch.dataset;
   const n = Number(step.replace("a", ""));
   const mode = (swatch.closest<HTMLElement>("[data-mode]")?.dataset.mode ??
-    (matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light")) as keyof typeof palettes;
-  const scales = palettes[mode];
-  const solid = `--tbhb-palette-${scale}-${n}`;
-  const alpha = `--tbhb-palette-${scale}-a${n}`;
+    (matchMedia("(prefers-color-scheme: dark)").matches
+      ? "dark"
+      : "light")) as keyof typeof palettes;
+  const colors = palettes[mode][scale];
+  const solidColor = colors?.[String(n)];
+  const alphaColor = colors?.[`a${String(n)}`];
+  const use = USES[n - 1];
+  const purpose = PURPOSES[n - 1];
+  if (!solidColor || !alphaColor || !use || !purpose) {
+    return;
+  }
+  const solid = `--tbhb-palette-${scale}-${String(n)}`;
+  const alpha = `--tbhb-palette-${scale}-a${String(n)}`;
 
   const dialog = element("dialog", {
     class: "tbhb-dialog",
@@ -105,17 +107,31 @@ function open(swatch: HTMLElement) {
     element(
       "div",
       { class: "tbhb-dialog-preview" },
-      element("div", { class: "tbhb-swatch tbhb-solid", style: `--tbhb-swatch: var(${solid})` }),
-      element("div", { class: "tbhb-swatch tbhb-alpha", style: `--tbhb-swatch: var(${alpha})` }),
+      element("div", {
+        class: "tbhb-swatch tbhb-solid",
+        style: `--tbhb-swatch: var(${solid})`,
+      }),
+      element("div", {
+        class: "tbhb-swatch tbhb-alpha",
+        style: `--tbhb-swatch: var(${alpha})`,
+      }),
     ),
-    element("h2", { id: "tbhb-dialog-title" }, `${label(scale)} ${step.toUpperCase()}`),
+    element(
+      "h2",
+      { id: "tbhb-dialog-title" },
+      `${label(scale)} ${step.toUpperCase()}`,
+    ),
     rows([
-      ["Usage", `${USES[n - 1]}: ${PURPOSES[n - 1]}`],
+      ["Usage", `${use}: ${purpose}`],
       ["Mode", label(mode)],
     ]),
-    values("Solid", solid, scales[scale][String(n)]),
-    values("Alpha", alpha, scales[scale][`a${n}`]),
-    element("form", { method: "dialog" }, element("button", { type: "submit" }, "Close")),
+    values("Solid", solid, solidColor),
+    values("Alpha", alpha, alphaColor),
+    element(
+      "form",
+      { method: "dialog" },
+      element("button", { type: "submit" }, "Close"),
+    ),
   );
   dialog.addEventListener("close", () => {
     dialog.remove();
@@ -132,7 +148,10 @@ function open(swatch: HTMLElement) {
 }
 
 document.addEventListener("click", (event) => {
-  const swatch = (event.target as Element).closest?.<HTMLElement>("button.tbhb-swatch[data-scale]");
+  const swatch =
+    event.target instanceof Element
+      ? event.target.closest<HTMLElement>("button.tbhb-swatch[data-scale]")
+      : null;
   if (swatch) {
     open(swatch);
   }

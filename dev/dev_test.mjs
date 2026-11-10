@@ -104,7 +104,9 @@ if (state !== "ready") {
   const res = await fetch(`http://127.0.0.1:${port}/`);
   const body = await res.text();
   if (res.status !== 200 || !body.includes("tbhb.dev design system")) {
-    failures.push(`GET /: expected 200 with the site's heading, got ${res.status}`);
+    failures.push(
+      `GET /: expected 200 with the site's heading, got ${res.status}`,
+    );
   }
   for (const framework of ["astro", "html", "react", "web-components"]) {
     const prefix = `/storybook/${framework}/`;
