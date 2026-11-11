@@ -2,12 +2,37 @@
 # Copyright Tony Burns
 
 load("@aspect_rules_js//js:defs.bzl", "js_test")
+load("@bazel_lib//lib:copy_file.bzl", "copy_file")
 load("@bazel_lib//lib:copy_to_directory.bzl", "copy_to_directory")
 load("@bazel_skylib//rules:write_file.bzl", "write_file")
 load("@tbhb_rules//repo:defs.bzl", "repo_files")
 
 # This package's files, chained into //:repo_files for the whole-tree checks.
 repo_files()
+
+copy_file(
+    name = "pages_workflow",
+    src = "//:.github/workflows/pages.yml",
+    out = "pages-workflow.yml",
+)
+
+js_test(
+    name = "pages_runners_test",
+    args = ["$(rootpath :pages_workflow)"],
+    data = [
+        "runner-policy.mjs",
+        ":pages_workflow",
+    ],
+    entry_point = "pages_runners_test.mjs",
+)
+
+js_test(
+    name = "runner_policy_test",
+    data = [
+        "runner-policy.mjs",
+    ],
+    entry_point = "runner_policy_test.mjs",
+)
 
 # GitHub Pages runs Jekyll over an artifact without this file, and Jekyll
 # drops the directories whose names start with an underscore, such as

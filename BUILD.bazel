@@ -57,6 +57,8 @@ repo_files(
 # and each package's own npm_link_all_packages links from it.
 npm_link_all_packages(name = "node_modules")
 
+exports_files([".github/workflows/pages.yml"])
+
 # The TypeScript gates check the repository, with the workspace libraries
 # linked alongside the tools supplied by tbhb_rules_typescript.
 TYPESCRIPT_NODE_MODULES = [

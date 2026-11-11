@@ -1,7 +1,7 @@
 {
   "workspaces": {
     ".": {
-      "entry": ["dev/proxy.mjs", "dev/dev_test.mjs", "pages/pages_test.mjs"],
+      "entry": ["dev/proxy.mjs", "dev/dev_test.mjs", "pages/*_test.mjs"],
       "project": ["dev/**/*.mjs", "pages/**/*.mjs"],
       "ignoreDependencies": [
         "@vitest/coverage-v8",
