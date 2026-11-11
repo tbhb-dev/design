@@ -73,3 +73,19 @@ js_test(
     data = [":pages"],
     entry_point = "pages_test.mjs",
 )
+
+js_test(
+    name = "pages_paths_test",
+    args = ["$(rootpath :pages)"],
+    data = [
+        "path-policy.mjs",
+        ":pages",
+    ],
+    entry_point = "pages_paths_test.mjs",
+)
+
+js_test(
+    name = "path_policy_test",
+    data = ["path-policy.mjs"],
+    entry_point = "path_policy_test.mjs",
+)
