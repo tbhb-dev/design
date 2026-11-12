@@ -74,3 +74,52 @@ jobs:
       - name: Deploy to GitHub Pages
         id: deploy
         uses: actions/deploy-pages@368f82528645a54fb793d4d04e342629a3f51346  # v5.0.1
+
+      # cspell:words pipefail mktemp esac vite
+      - name: Check the live site
+        shell: bash
+        env:
+          PAGE_URL: ${{ steps.deploy.outputs.page_url }}
+        run: |
+          set -euo pipefail
+          body=$(mktemp)
+          trap 'rm -f "$body"' EXIT
+          # Keep these path boundaries and fragments in sync with path-policy.mjs.
+          pattern="(^|[\"'[:space:](=:])(/tmp/|/home/|/Users/|/private/var/|execroot/|bazel-out/|_bazel_|/storybook-[A-Za-z0-9]{6}/)"
+          check_url() {
+            local url=$1 expected=$2 status attempt
+            for attempt in 1 2 3 4; do
+              if ! status=$(curl --silent --show-error --location \
+                --connect-timeout 10 --max-time 30 \
+                --retry 3 --retry-all-errors --retry-delay 2 \
+                --output "$body" --write-out '%{http_code}' "$url"); then
+                continue
+              fi
+              if [[ "$status" != "$expected" ]]; then
+                echo "$url: expected $expected, got $status (attempt $attempt)" >&2
+                continue
+              fi
+              if [[ "$expected" == 200 ]]; then
+                if LC_ALL=C grep -aEq -- "$pattern" "$body"; then
+                  echo "$url: build path matched $pattern" >&2
+                  LC_ALL=C grep -aEno -- ".{0,30}${pattern}.{0,30}" "$body" >&2
+                  return 1
+                else
+                  case $? in
+                    1) ;;
+                    *) return 1 ;;
+                  esac
+                fi
+              fi
+              echo "$url: $status"
+              return 0
+            done
+            echo "$url: fetch failed after four attempts" >&2
+            return 1
+          }
+          for framework in astro html react web-components; do
+            for file in iframe.html index.json index.html; do
+              check_url "${PAGE_URL%/}/storybook/$framework/$file" 200
+            done
+            check_url "${PAGE_URL%/}/storybook/$framework/.vite/manifest.json" 404
+          done
